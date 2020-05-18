@@ -284,8 +284,10 @@
     </main>
 </template>
 
-<script>
+<script >
 import $ from "jquery"
+window.$ = $;
+require('bootstrap');
 
 
   export default {
@@ -298,7 +300,11 @@ import $ from "jquery"
     }),
   
   mounted(){
+      
    $('.carousel[data-type="multi"] .item').each(function(){
+       $('.carousel').carousel({
+          interval: 2000
+        })
           var next = $(this).next();
           if (!next.length) {
             next = $(this).siblings(':first');
