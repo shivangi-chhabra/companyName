@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 
+
 export default {
   name: 'App',
   components: {
@@ -17,9 +18,22 @@ export default {
       Footer
       
   }
-  
+ 
+
 }
 </script>
 <style>
   
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin-ext');
+
+html,body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+#app{
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
 </style>

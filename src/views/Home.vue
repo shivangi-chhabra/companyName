@@ -298,29 +298,38 @@ require('bootstrap');
   data: () => ({
         
     }),
-  
-  mounted(){
+     mounted(){
       
    $('.carousel[data-type="multi"] .item').each(function(){
        $('.carousel').carousel({
           interval: 2000
         })
-          var next = $(this).next();
-          if (!next.length) {
-            next = $(this).siblings(':first');
+          this.next = $(this).next();
+          if (!this.next.length) {
+            this.next = $(this).siblings(':first');
           }
-          next.children(':first-child').clone().appendTo($(this));
+          this.next.children(':first-child').clone().appendTo($(this));
 
           for (var i=0;i<4;i++) {
-            next=next.next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
+            this.next=this.next.next();
+            if (!this.next.length) {
+                this.next = $(this).siblings(':first');
             }
 
-            next.children(':first-child').clone().appendTo($(this));
+            this.next.children(':first-child').clone().appendTo($(this));
           }
-        });        
+        });  
+        $('.carousel-control').click(function(e){
+             e.stopPropagation();
+             var goTo = $(this).data('slide');
+             if(goTo=="prev") {
+             $('#carousel-id').carousel('prev'); 
+              } else {
+              $('#carousel-id').carousel('next'); 
+              }
+        });
         
-  } 
-  }  
+    }
+   
+}  
     </script>

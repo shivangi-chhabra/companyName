@@ -9,7 +9,7 @@ import './assets/css/style.css'
 
 import 'jquery'
 import 'bootstrap'
-import '../node_modules/bootstrap/dist/js/bootstrap'
+
 import './assets/fonts/fontawesome-webfont.svg'
 
 
