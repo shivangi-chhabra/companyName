@@ -190,3 +190,46 @@ ul.big li:nth-child(2n) {margin-left: 2%;}
     .fbox {float: left;}
     .fbox:nth-child(3) {float: right !important;}
 }
+
+.carousel-inner .active.left { left: -25%; }
+.carousel-inner .next        { left:  25%; }
+.carousel-inner .prev        { left: -25%; }
+.carousel-control.right { right: -50px; }
+.carousel-control.left { left: -50px; }
+.carousel-control            { width:  4%; }
+.item {
+  animation-name: slideInRight;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes slideInRight {
+    from {
+      -webkit-transform: translate3d(25%, 0, 0);
+      transform: translate3d(25%, 0, 0);
+      visibility: visible;
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      -webkit-transform: translate3d(25%, 0, 0);
+      transform: translate3d(25%, 0, 0);
+      visibility: visible;
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  .slideInRight {
+    -webkit-animation-name: slideInRight;
+    animation-name: slideInRight;
+  }
+  

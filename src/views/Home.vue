@@ -286,8 +286,6 @@
 
 <script >
 import $ from "jquery"
-window.$ = $;
-require('bootstrap');
 
 
   export default {
@@ -319,15 +317,7 @@ require('bootstrap');
             this.next.children(':first-child').clone().appendTo($(this));
           }
         });  
-        $('.carousel-control').click(function(e){
-             e.stopPropagation();
-             var goTo = $(this).data('slide');
-             if(goTo=="prev") {
-             $('#carousel-id').carousel('prev'); 
-              } else {
-              $('#carousel-id').carousel('next'); 
-              }
-        });
+        
         
     }
    
