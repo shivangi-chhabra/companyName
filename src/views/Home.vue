@@ -286,7 +286,7 @@
 
 <script >
 import $ from "jquery"
-
+import 'bootstrap'
 
   export default {
   name: 'Home',
