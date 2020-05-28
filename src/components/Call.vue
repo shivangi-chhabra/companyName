@@ -48,10 +48,10 @@ import axios from 'axios'
 
         console.log(newPerson);
 
-        axios.post('')
+        axios.post('http://localhost/companyName/index.php',newPerson)
         .then((response)=>{ console.log(response);
         })
-        .catch((error) => { console.log(error);
+        .catch((error) => { console.log(error.response);
         });
 
     }
