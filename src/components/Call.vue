@@ -48,7 +48,7 @@ import axios from 'axios'
 
         console.log(newPerson);
 
-        axios.post('http://localhost/companyName/index.php',newPerson)
+        axios.post('index.php',newPerson)
         .then((response)=>{ console.log(response);
         })
         .catch((error) => { console.log(error.response);
