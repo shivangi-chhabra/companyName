@@ -3,65 +3,80 @@
     <h2 class="sub_title w10">CALL YOU</h2>
     <div class="clearfix"></div>
     <div class="login-form-1">
-        <form id="login-form" class="text-left">
+        <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+        <form id="login-form" class="text-left" @submit="checkForm" method="post" role="form">
+            <p v-if="errors.length">
+                  <b>Please correct the following error(s):</b>
+                  <ul>
+                    <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+                  </ul>
+                </p>
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
                         <label for="ad" class="sr-only">Name</label>
-                        <input type="text" class="form-control" id="ad"  name="ad" v-model="People.ad" placeholder="Name">
+                        <input type="text" class="form-control" id="ad"  name="ad" v-model="ad" placeholder="Name">
                     </div>
                     <div class="form-group">
                         <label for="tel" class="sr-only">Phone Number</label>
-                        <input type="text" class="form-control" id="tel" name="tel" v-model="People.tel" placeholder="Phone Number">
+                        <input type="text" class="form-control" id="tel" name="tel" v-model="tel" placeholder="Phone Number">
                     </div>
                 </div>
-                <button id="myForm" type="submit" class="login-button" @click="addToAPI"><i class="fa fa-chevron-right"></i></button>
+                <button id="myForm" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>
         </form>
     </div>                            
      </div>
     
 </template>
-<script>
-import $ from'jquery'
-import axios from 'axios'
-  export default {
+ <script>
+//import $ from "jquery"
+import axios from "axios" //eslint-disable-line
+
+export default {
   name: 'Home',
-  props: {
-    
-  },
   data(){
-
-      return{
-          People:{ad:'',tel:''}
-      }
-
+    return {
+      errors: [],
+      ad: null,
+      tel: null,
+    }
   },
   methods:{
-      addToAPI(){
+    checkForm: function (e) {
+      e.preventDefault();
+      
+      if (this.ad && this.tel) {
+        axios(
+          { 
+            method: "POST", 
+            "url": "http://localhost/companyName/", 
+            "data": {
+                      ad: this.ad,
+                      tel: this.tel
+                    }, 
+            "headers": { "content-type": "application/x-www-form-urlencoded" } 
+          }).then(result => {
+              console.log(result.data);
+              this.response = result.data;
+          }, error => {
+              console.error(error);
+          });
+      }
 
-        let newPerson = {
-            ad: this.People.ad,
-            tel: this.People.tel
-        }
+      this.errors = [];
 
-        console.log(newPerson);
-
-        axios.post('index.php',newPerson)
-        .then((response)=>{ console.log(response);
-        })
-        .catch((error) => { console.log(error.response);
-        });
-
+      if (!this.ad) {
+        this.errors.push('Name required.');
+      }
+      if (!this.tel) {
+        this.errors.push('Phone Number required.');
+      }
+      
     }
-
   },
-     mounted(){
 
-       $("#login-form").submit(function(e) {
-    e.preventDefault();
-});
-}      
-}  
- </script>
+  }
+</script>
