@@ -24,7 +24,7 @@
                         <input type="text" class="form-control" id="tel" name="tel" v-model="tel" placeholder="Phone Number">
                     </div>
                 </div>
-                <button id="myForm" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                <button name ="submit" id="myForm" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>
         </form>
     </div>                            
@@ -47,23 +47,21 @@ export default {
   methods:{
     checkForm: function (e) {
       e.preventDefault();
-      
       if (this.ad && this.tel) {
         axios(
           { 
-            method: "POST", 
-            "url": "http://localhost/companyName/", 
-            "data": {
+            method: "POST" ,
+            url   : "http://localhost/companyName/",
+            data: {
+            
                       ad: this.ad,
-                      tel: this.tel
-                    }, 
-            "headers": { "content-type": "application/x-www-form-urlencoded" } 
-          }).then(result => {
-              console.log(result.data);
-              this.response = result.data;
-          }, error => {
-              console.error(error);
-          });
+                      tel: this.tel  
+            },
+             "headers": { "content-type": "application/x-www-form-urlencoded" }         
+          }).then((result)=>{
+          console.log(result.data);
+          this.response = result.data;
+        })
       }
 
       this.errors = [];
@@ -76,7 +74,7 @@ export default {
       }
       
     }
-  },
+  }
 
   }
 </script>
