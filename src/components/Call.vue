@@ -5,7 +5,7 @@
     <div class="login-form-1">
         <div id="sendmessage">Your message has been sent. Thank you!</div>
               <div id="errormessage"></div>
-        <form id="login-form" class="text-left" @submit="checkForm" method="post" role="form">
+        <form id="login-form" class="text-left" @submit="checkForm" method="post" role="form" action="" enctype='multipart/form-data'>
             <p v-if="errors.length">
                   <b>Please correct the following error(s):</b>
                   <ul>
@@ -56,8 +56,7 @@ export default {
             
                       ad: this.ad,
                       tel: this.tel  
-            },
-             "headers": { "content-type": "application/x-www-form-urlencoded" }         
+            }       
           }).then((result)=>{
           console.log(result.data);
           this.response = result.data;
