@@ -42,7 +42,7 @@
                         <li><router-link to = '/page'>PAGE</router-link></li>
                         <li><router-link to="/category" >CATEGORY</router-link></li>
                         <li><a href="#" title="">MENU ITEM</a></li>
-                        <li><a href="#" title="">MENU ITEM</a></li>
+                        <li><router-link to="/login" >LOGIN IN</router-link></li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->
