@@ -3,7 +3,13 @@
     border: 3px solid #f1f1f1;
     margin: 24px 0 45px 0;
     
-    background-image: url("https://www.youtube.com/watch?v=rdGhwe1Q6LY");
+  }
+  #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
   }
   
   /* Full-width inputs */
@@ -65,10 +71,15 @@
   }
   #con{
     width: 555px;
-	background: #FFFFFF;
 	margin:auto;
-	margin-top:50px;
+    margin-top:50px;
+    
+    
   }
+  #vd{
+      position: fixed;
+  }
+  
   /* Change styles for span and cancel button on extra small screens */
   @media screen and (max-width: 300px) {
     span.psw {
