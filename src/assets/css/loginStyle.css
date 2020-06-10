@@ -71,13 +71,18 @@
   }
   #con{
     width: 555px;
-	margin:auto;
+	  margin:auto;
     margin-top:50px;
     
     
   }
   #vd{
       position: fixed;
+  }
+
+  #menu{
+    border: 3px solid #f1f1f1;
+    margin: 24px 0 45px 0;
   }
   
   /* Change styles for span and cancel button on extra small screens */

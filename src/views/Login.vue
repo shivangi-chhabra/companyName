@@ -1,13 +1,13 @@
 <template>
 <div id="con">
-<form action="" method="post" class="adlog" @submit="checkForm" enctype='multipart/form-data'>
+<form action="" method="post" class="adlog" @submit.prevent="login" enctype='multipart/form-data'>
   <div class="imgcontainer">
     <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="cont">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required id="username" v-model="username">
+    <input type="text" placeholder="Enter Username" name="username" required autofocus id="username" v-model="username">
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required id="password" v-model="password">
@@ -25,46 +25,47 @@
 </div>
 </template>
 <script>
-
-import axios from "axios" //eslint-disable-line
-
 export default {
-  name: 'Home',
-  data(){
+  name: 'Login',
+  data () {
     return {
-      errors: [],
-      username: null,
-      password: null,
+      username: '',
+      password: '',
+      error: false
     }
   },
-  methods:{
-    checkForm: function (e) {
-      e.preventDefault();
-      if (this.username && this.password) {
-        axios(
-          { 
-            method: "POST" ,
-            url   : "http://localhost/admin/",
-            data: {
-                      username: this.username,
-                      password: this.password  
-            }       
-          }).then((result)=>{
-          console.log(result.data);
-          this.response = result.data;
-        })
-      }
+  methods: {
+    login () {
+      
+      this.$http.post('', { username: this.username, password: this.password })
+    .then(request => {
+      console.log(request);
+      if(request.status === 200) {
+        this.loginSuccessful(request)  
+      } else {
+        this.loginFailed()  
+      }            
+    })
+    .catch((json) => {  
+      this.loginFailed()
+    })
+    },
+    loginSuccessful (req) {
+    //  if (!req.data.token) {
+    // this.loginFailed()
+    // return
+    //  }
 
-      this.errors = [];
+     // localStorage.token = req.data.token
+     this.error = false
+      console.log('----');
+     this.$router.replace('/menu')
+     },
 
-      if (!this.username) {
-        this.errors.push('Name required.');
-      }
-      if (!this.password) {
-        this.errors.push('Phone Number required.');
-      }  
+    loginFailed () {
+    this.error = 'Login failed!'
+    delete localStorage.token
     }
   }
-
-  }
+}
 </script>

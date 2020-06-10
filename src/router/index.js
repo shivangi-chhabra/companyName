@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Page from '../views/Page.vue'
 import Category from '../views/Category.vue'
 import Login from'../views/Login.vue'
+import Menu from'../views/Menu.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/menu',
+    name: 'Menu',
+    component: Menu
   }
   
 ]

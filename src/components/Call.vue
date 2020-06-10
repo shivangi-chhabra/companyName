@@ -36,7 +36,7 @@
 import axios from "axios" //eslint-disable-line
 
 export default {
-  name: 'Home',
+  name: 'call',
   data(){
     return {
       errors: [],

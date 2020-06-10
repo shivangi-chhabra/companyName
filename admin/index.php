@@ -25,8 +25,8 @@ $postdata = file_get_contents("php://input");
 
 if(isset($postdata) && !empty($postdata))
 {
-	$request = json_decode($postdata);
-	$username = mysqli_real_escape_string($conn,trim($request->username));
+    $request  = json_decode($postdata);
+    $username = mysqli_real_escape_string($conn,trim($request->username));
     $password = mysqli_real_escape_string($conn,trim($request->password));
 
     $sql = "SELECT username,password FROM admin 
@@ -37,10 +37,13 @@ if(isset($postdata) && !empty($postdata))
     $count  = mysqli_num_rows($result);  
           
     if($count == 1){  
-         echo " Login successful ";  
+         echo " Login successful"; 
+         
+         
     }  
     else{  
-         echo " Login failed. Invalid username or password.";  
+        header('HTTP/1.0 401 Unauthorized');
+        die ("Not authorized");
     }             
 
 }
