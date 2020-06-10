@@ -37,9 +37,7 @@ if(isset($postdata) && !empty($postdata))
     $count  = mysqli_num_rows($result);  
           
     if($count == 1){  
-         echo " Login successful"; 
-         
-         
+         echo " Login successful";   
     }  
     else{  
         header('HTTP/1.0 401 Unauthorized');

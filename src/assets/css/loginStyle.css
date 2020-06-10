@@ -84,6 +84,27 @@
     border: 3px solid #f1f1f1;
     margin: 24px 0 45px 0;
   }
+  .re_menu{
+    border: 3px solid #f1f1f1;
+    margin: 24px 0 45px 0;
+
+  }
+
+  /* Set a style for all buttons */
+  button.re_menu  {
+    background-color:#03c2fc ;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover.re_menu {
+    opacity: 0.8;
+  }
   
   /* Change styles for span and cancel button on extra small screens */
   @media screen and (max-width: 300px) {
@@ -95,3 +116,79 @@
       width: 100%;
     }
   }
+
+
+  .myModal{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modalContainer{
+    width: 555px;
+    background: #FFFFFF;
+    margin:auto;
+    margin-top:50px;
+  }
+  
+  .modalHeader{
+    padding:10px;
+    background: #008CBA;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+  }
+  
+  .editHeader{
+    padding:10px;
+    background: #4CAF50;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+  }
+  
+  .deleteHeader{
+    padding:10px;
+    background: #f44336;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+  }
+  
+  .modalBody{
+    padding:40px;
+  }
+  
+  .modalFooter{
+    height:36px;
+  }
+  
+  .footerBtn{
+    margin-right:10px;
+    margin-top:-9px;
+  }
+  
+  .closeBtn{
+    background: #008CBA;
+    color: #FFFFFF;
+    border:none;
+  }
+  
+  .closeEditBtn{
+    background: #4CAF50;
+    color: #FFFFFF;
+    border:none;
+  }
+  
+  .closeDelBtn{
+    background: #f44336;
+    color: #FFFFFF;
+    border:none;
+  }
+  
