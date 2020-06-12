@@ -40,7 +40,7 @@ Vue.use(VueRouter)
     component: Menu
   },
   {
-    path: '/add',
+    path: '/Add',
     name: 'Add',
     component: Add
   },

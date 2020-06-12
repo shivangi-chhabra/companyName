@@ -28,7 +28,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for:="member in members">
+                    <tr v-for="member in members"  v-bind:key="member.id"> 
                         <td>{{ member.firstname }}</td>
                         <td>{{ member.lastname }}</td>
                         <td>
@@ -86,7 +86,7 @@
         <hr>
         <div class="modalFooter">
             <div class="footerBtn pull-right">
-                <button class="btn btn-default" @click="showEditModal = false"><span class="glyphicon glyphicon-remove"></span> Cancel</button> <button class="btn btn-success" @click="showEditModal = false; updateMember();"><span class="glyphicon glyphicon-check"></span> Save</button>
+                <button class="btn btn-default" v-on:click="showEditModal = false"><span class="glyphicon glyphicon-remove"></span> Cancel</button> <button class="btn btn-success" v-on:click="showEditModal = false; updateMember();"><span class="glyphicon glyphicon-check"></span> Save</button>
             </div>
         </div>
     </div>
@@ -112,15 +112,15 @@
     </div>
 </div>
 
-</div>
+    </div>
 </div>
 </template>
 <script>
 import axios from 'axios'
-export default {
-    name: 'add',
-    data () {
-    return {
+export default{
+    name: 'Admin',
+    data(){
+        return{
         showAddModal: false,
         showEditModal: false,
         showDeleteModal: false,
@@ -130,83 +130,92 @@ export default {
         newMember: {firstname: '', lastname: ''},
         clickMember: {}
     }
-  },
-    mounted: function(){
+},
+
+    mounted(){
         this.getAllMembers();
     },
 
     methods:{
         getAllMembers: function(){
+            var self = this;
             axios.get('http://localhost/admin/api.php')
                 .then(function(response){
                     //console.log(response);
                     if(response.data.error){
-                        this.errorMessage = response.data.message;
+                        self.errorMessage = response.data.message;
                     }
                     else{
-                        this.members = response.data.members;
+                        self.members = response.data;
                     }
                 });
         },
 
         saveMember: function(){
             //console.log(app.newMember);
-            var memForm = this.toFormData(this.newMember);
-            axios.post('http://localhost/admin/api.php?crud=create', memForm)
+            var self = this;
+            //debugger;       
+            axios.post('http://localhost/admin/api.php?crud=create', this.newMember)
                 .then(function(response){
-                    //console.log(response);
-                    this.newMember = {firstname: '', lastname:''};
+                    console.log(response);
+                    self.newMember = {firstname: '', lastname:''};
                     if(response.data.error){
-                        this.errorMessage = response.data.message;
+                        self.errorMessage = response.data.message;
                     }
                     else{
-                        this.successMessage = response.data.message
-                        this.getAllMembers();
+                        self.successMessage = response.data;
+                        self.getAllMembers();
                     }
                 });
         },
 
         updateMember(){
-            var memForm = this.toFormData(this.clickMember);
+            var self = this;
+            //debugger;
+             var memForm = self.toFormData(self.clickMember);
             axios.post('http://localhost/admin/api.php?crud=update', memForm)
                 .then(function(response){
-                    //console.log(response);
-                    this.clickMember = {};
+                    console.log(response);
+                    self.clickMember = {};
                     if(response.data.error){
-                        this.errorMessage = response.data.message;
+                        self.errorMessage = response.data.message;
                     }
                     else{
-                        this.successMessage = response.data.message
-                        this.getAllMembers();
+                        self.successMessage = response.data;
+                        self.getAllMembers();
                     }
                 });
         },
 
         deleteMember(){
-            var memForm = this.toFormData(this.clickMember);
+            var self = this;
+            var memForm = self.toFormData(self.clickMember);
             axios.post('http://localhost/admin/api.php?crud=delete', memForm)
                 .then(function(response){
                     //console.log(response);
-                    this.clickMember = {};
+                    self.clickMember = {};
                     if(response.data.error){
-                        this.errorMessage = response.data.message;
+                        self.errorMessage = response.data.message;
                     }
                     else{
-                        this.successMessage = response.data.message
-                        this.getAllMembers();
+                        self.successMessage = response.data;
+                        self.getAllMembers();
                     }
                 });
         },
 
         selectMember(member){
-           this.clickMember = member;
+            var self = this;
+            self.clickMember = member;
         },
 
         toFormData: function(obj){
             var form_data = new FormData();
+           // debugger;
             for(var key in obj){
                 form_data.append(key, obj[key]);
             }
+            //debugger;
             return form_data;
         },
 
@@ -218,3 +227,80 @@ export default {
     }
 }
 </script>
+<style>
+.myModal{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modalContainer{
+    width: 555px;
+    background: #FFFFFF;
+    margin:auto;
+    margin-top:50px;
+}
+
+.modalHeader{
+    padding:10px;
+    background: #008CBA;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+}
+
+.editHeader{
+    padding:10px;
+    background: #4CAF50;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+}
+
+.deleteHeader{
+    padding:10px;
+    background: #f44336;
+    color: #FFFFFF;
+    height:50px;
+    font-size:20px;
+    padding-left:15px;
+}
+
+.modalBody{
+    padding:40px;
+}
+
+.modalFooter{
+    height:36px;
+}
+
+.footerBtn{
+    margin-right:10px;
+    margin-top:-9px;
+}
+
+.closeBtn{
+    background: #008CBA;
+    color: #FFFFFF;
+    border:none;
+}
+
+.closeEditBtn{
+    background: #4CAF50;
+    color: #FFFFFF;
+    border:none;
+}
+
+.closeDelBtn{
+    background: #f44336;
+    color: #FFFFFF;
+    border:none;
+}
+
+@import'~bootstrap/dist/css/bootstrap.css'
+</style>
