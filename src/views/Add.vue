@@ -23,16 +23,16 @@
 
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="member in members"  v-bind:key="member.id"> 
-                        <td>{{ member.firstname }}</td>
-                        <td>{{ member.lastname }}</td>
+                    <tr v-for="u in us"  v-bind:key="u.id"> 
+                        <td>{{ u.ad }}</td>
+                        <td>{{ u.tel }}</td>
                         <td>
-                            <button class="btn btn-success" @click="showEditModal = true; selectMember(member);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(member);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            <button class="btn btn-success" @click="showEditModal = true; selectMember(u);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(u);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
 
                         </td>
                     </tr>
@@ -40,7 +40,7 @@
             </table>
         </div>
 
-        <!-- Add Modal -->
+<!-- Add Modal -->
 <div class="myModal" v-if="showAddModal">
     <div class="modalContainer">
         <div class="modalHeader">
@@ -49,12 +49,12 @@
         </div>
         <div class="modalBody">
             <div class="form-group">
-                <label>Firstname:</label>
-                <input type="text" class="form-control" v-model="newMember.firstname">
+                <label>Address:</label>
+                <input type="text" class="form-control" v-model="newMember.ad">
             </div>
             <div class="form-group">
-                <label>Lastname:</label>
-                <input type="text" class="form-control" v-model="newMember.lastname">
+                <label>Telephone:</label>
+                <input type="text" class="form-control" v-model="newMember.tel">
             </div>
         </div>
         <hr>
@@ -75,12 +75,12 @@
         </div>
         <div class="modalBody">
             <div class="form-group">
-                <label>Firstname:</label>
-                <input type="text" class="form-control" v-model="clickMember.firstname">
+                <label>Address:</label>
+                <input type="text" class="form-control" v-model="clickMember.ad">
             </div>
             <div class="form-group">
-                <label>Lastname:</label>
-                <input type="text" class="form-control" v-model="clickMember.lastname">
+                <label>Telephone:</label>
+                <input type="text" class="form-control" v-model="clickMember.tel">
             </div>
         </div>
         <hr>
@@ -101,7 +101,7 @@
         </div>
         <div class="modalBody">
             <h5 class="text-center">Are you sure you want to Delete</h5>
-            <h2 class="text-center">{{clickMember.firstname}} {{clickMember.lastname}}</h2>
+            <h2 class="text-center">{{clickMember.ad}} {{clickMember.tel}}</h2>
         </div>
         <hr>
         <div class="modalFooter">
@@ -111,8 +111,7 @@
         </div>
     </div>
 </div>
-
-    </div>
+</div>
 </div>
 </template>
 <script>
@@ -126,8 +125,8 @@ export default{
         showDeleteModal: false,
         errorMessage: "",
         successMessage: "",
-        members: [],
-        newMember: {firstname: '', lastname: ''},
+        us: [],
+        newMember: {ad: '', tel: ''},
         clickMember: {}
     }
 },
@@ -143,10 +142,10 @@ export default{
                 .then(function(response){
                     //console.log(response);
                     if(response.data.error){
-                        self.errorMessage = response.data.message;
+                        self.errorMessage = response.data;
                     }
                     else{
-                        self.members = response.data;
+                        self.us = response.data;
                     }
                 });
         },
@@ -158,7 +157,7 @@ export default{
             axios.post('http://localhost/admin/api.php?crud=create', this.newMember)
                 .then(function(response){
                     console.log(response);
-                    self.newMember = {firstname: '', lastname:''};
+                    self.newMember = {ad: '', tel:''};
                     if(response.data.error){
                         self.errorMessage = response.data.message;
                     }
@@ -195,7 +194,7 @@ export default{
                     //console.log(response);
                     self.clickMember = {};
                     if(response.data.error){
-                        self.errorMessage = response.data.message;
+                        self.errorMessage = response.data;
                     }
                     else{
                         self.successMessage = response.data;
@@ -204,9 +203,9 @@ export default{
                 });
         },
 
-        selectMember(member){
+        selectMember(u){
             var self = this;
-            self.clickMember = member;
+            self.clickMember = u;
         },
 
         toFormData: function(obj){

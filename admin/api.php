@@ -4,13 +4,13 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
-$firstname = "";
-$lastnames = "";
-$memid     = "";
+$ad = "";
+$tel = "";
+$id     = "";
 $policies  = [];
 
 $servername = "localhost";
-$database = "crud";
+$database = "contact1";
 $username = "root";
 $password = "";
 
@@ -33,28 +33,28 @@ if(isset($_GET['crud'])){
 //$postdata = file_get_contents("php://input");
 
   if($crud == 'read'){
-  $sql = "SELECT * FROM `members`";
+  $sql = "SELECT * FROM `us`";
   $query = $conn->query($sql);
   //print_r($query);
   
   //print_r($query);
-  $members = array();
+  $us = array();
 
   if($result = mysqli_query($conn,$sql))
   {
     $i = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-    $policies[$i]['memid']      = $row['memid'];
-    $policies[$i]['firstname']    = $row['firstname'];
-    $policies[$i]['lastname']   = $row['lastname'];
+    $policies[$i]['id']    = $row['id'];
+    $policies[$i]['ad']    = $row['ad'];
+    $policies[$i]['tel']   = $row['tel'];
     $i++;
   }
   
   echo json_encode($policies);
   
 }
-  $out['members'] = $members;
+  $out['us'] = $us;
 
 }
 
@@ -68,48 +68,49 @@ if(isset($postdata) && !empty($postdata))
 
 $request = json_decode($postdata);
 
-$firstname = mysqli_real_escape_string($conn ,trim($request->firstname));
-$lastname  = mysqli_real_escape_string($conn,trim($request->lastname));
+$ad      = mysqli_real_escape_string($conn,trim($request->ad));
+$tel     = mysqli_real_escape_string($conn,trim($request->tel));
 
 
 
-$query = "INSERT into `members` (`firstname`, `lastname`) 
-	      VALUES ('{$firstname}', '{$lastname}')";
-            print_r($query);
+$query   = "INSERT into `us` (`ad`, `tel`) 
+	        VALUES ('{$ad}', '{$tel}')";
+print_r($query);
 
 
-  if(mysqli_query($conn , $query)){
+if(mysqli_query($conn , $query)){
     echo "Records added successfully.";
-  } else{
+} else{
          echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
-    }
+      }
 }
 }
 
 if($crud == 'update'){
 
 
-$memid = mysqli_real_escape_string($conn, $_POST['memid']);
+$id   = mysqli_real_escape_string($conn, $_POST['id']);
 
-$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-$lastname  = mysqli_real_escape_string($conn, $_POST['lastname']);
+$ad   = mysqli_real_escape_string($conn, $_POST['ad']);
+$tel  = mysqli_real_escape_string($conn, $_POST['tel']);
 
-$query = "UPDATE `members` SET `firstname` = '$firstname', `lastname` = '$lastname' WHERE `memid` = '$memid' ";
+$query = "UPDATE `us` SET `ad` = '$ad', `tel` = '$tel' WHERE `id` = '$id' ";
 
 if(mysqli_query($conn , $query)){
     echo "Records edited successfully.";
- }else{
-         echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
-      }
+ }
+ else{
+        echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+ }
 }
 
 
 if($crud == 'delete'){
 
-$memid = mysqli_real_escape_string($conn, $_POST['memid']);
+$id = mysqli_real_escape_string($conn, $_POST['id']);
 
-$sql = $conn->prepare("DELETE FROM `members` WHERE memid=?");
-$sql->bind_param(i, $memid);
+$sql = $conn->prepare("DELETE FROM `us` WHERE id=?");
+$sql->bind_param(i, $id);
 $sql->execute();
   
   
