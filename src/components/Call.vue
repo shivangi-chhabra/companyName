@@ -54,7 +54,7 @@ export default {
             url   : "http://localhost/companyName/",
             data: {
             
-                      ad: this.ad,
+                      ad:  this.ad,
                       tel: this.tel  
             }       
           }).then((result)=>{
