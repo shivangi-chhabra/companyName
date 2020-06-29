@@ -5,15 +5,13 @@
         <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
+                <i class="fas fa-align-justify"></i> 
             </button>
 
         </div>
     </nav>
 </div>
  <div class="wrapper">
-   
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
@@ -23,7 +21,8 @@
         <ul class="list-unstyled components">
             <p>Dummy Heading</p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+              <router-link to="/" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Home </router-link>
+               <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>-->
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
                         <a href="#">Home 1</a>
@@ -61,7 +60,7 @@
             </li>
         </ul>
     </nav>
-
+     <Add />
 </div>
 </div>
 </template>
@@ -136,10 +135,24 @@ ul ul a {
     padding-left: 30px !important;
     background: #6d7fcc;
 }
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
 </style>
 <script>
 import $ from "jquery";
+import Add from "../views/Add";
 export default {
+    name: 'comp',
+    components: {
+      Add
+      
+  },
   
  mounted(){
     $(document).ready(function () {

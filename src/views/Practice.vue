@@ -1,4 +1,5 @@
 <template>
+<div>
          <header class="site-header">
         <div class="top">
             <div class="container">
@@ -17,7 +18,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                  
         <nav class="navbar navbar-default">
 			<div class="container">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
@@ -30,23 +31,44 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-navbar-collapse">
                     <ul class="nav navbar-nav main-navbar-nav">
-                        <li class="active"><router-link to ='/' >HOME</router-link></li>
-                        <li class="dropdown">
-                            <a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DROPDOWN MENU <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" title="">SUB MENU 1</a></li>
-                                <li><a href="#" title="">SUB MENU 2</a></li>
-                                <li><a href="#" title="">SUB MENU 3</a></li>
-                            </ul>
-                        </li>
-                        <li><router-link to = '/page'>PAGE</router-link></li>
-                        <li><router-link to="/category" >CATEGORY</router-link></li>
-                        <li><a href="#" title="">MENU ITEM</a></li>
-                        <li><router-link to="/login" >LOGIN IN</router-link></li>
+                        <li v-for="element in practice" :key="element">
+                    <router-link :to="element.Link">{{element.Name}}</router-link>
+                 </li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->
 			</div>
 		</nav>        
     </header>
+    <Footer />
+</div>
 </template>
+<script>
+import axios from 'axios'
+import Footer from "../components/Footer"
+
+ export default{
+  name: 'Practice',
+  components:{
+     Footer
+  },
+   data:() =>{
+    return{
+      practice:[]
+    }
+    },
+     methods: {
+        getPractice: function () {
+         axios
+      .get('http://localhost/admin/header.php')
+      .then(response => {
+        this.practice = response.data
+      })
+      }
+    },
+    beforeMount() {
+      this.getPractice()
+    }
+}
+
+</script>

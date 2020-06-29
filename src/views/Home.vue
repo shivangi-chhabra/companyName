@@ -1,4 +1,6 @@
 <template>
+<div>
+    <Header />
   <main class="site-main">
         <section class="hero_area">
             <div class="hero_content">
@@ -261,6 +263,7 @@
             </div>
         </section>
     </main>
+</div>
 </template>
 
 <script>
@@ -268,10 +271,12 @@ import $ from "jquery"
 import 'bootstrap'
 import axios from 'axios' //eslint-disable-line
 import Call from '@/components/Call.vue' 
+import Header from "@/components/Header.vue";
   export default {
   name: 'Home',
   components: {
-      Call
+      Call,
+      Header
      
       
   },
@@ -337,3 +342,6 @@ import Call from '@/components/Call.vue'
    
 }  
     </script>
+    <style>
+    
+    </style>

@@ -1,6 +1,7 @@
 <template>
 <div>
-    <TheContainer />
+    
+    
 <div class="container">
     <h1 class="page-header text-center">Vue.js CRUD Operation with PHP/MySQLi</h1>
     <div id="members">
@@ -118,14 +119,11 @@
 </div>
 </template>
 <script>
-import TheContainer from '../components/TheContainer'
+
 import axios from 'axios'
 export default{
     name: 'Admin',
-    components: {
-      TheContainer
-      
-  },
+    
     data(){
         return{
         showAddModal: false,
@@ -309,5 +307,5 @@ export default{
     border:none;
 }
 
-@import'~bootstrap/dist/css/bootstrap.css'
+
 </style>

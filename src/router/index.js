@@ -6,10 +6,9 @@ import Category from '../views/Category.vue'
 import Login from '../views/Login.vue'
 import Menu from '../views/Menu.vue'
 import Add from '../views/Add.vue'
-import Update from '../views/Update.vue'
-import Delete from '../views/Delete.vue'
-import View from '../views/View.vue'
-
+import TheContainer from '../views/TheContainer.vue'
+import Practice from '../views/Practice.vue'
+import SignUp from '../views/SignUp.vue'
 
 Vue.use(VueRouter)
 
@@ -45,19 +44,19 @@ Vue.use(VueRouter)
     component: Add
   },
   {
-    path: '/update',
-    name: 'Update',
-    component: Update
+    path: '/thecontainer',
+    name: 'TheContainer',
+    component: TheContainer
   },
   {
-    path: '/delete',
-    name: 'Delete',
-    component: Delete
+    path: '/practice',
+    name: 'Practice',
+    component: Practice
   },
   {
-    path: '/view',
-    name: 'View',
-    component: View
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
   }
   
 ]

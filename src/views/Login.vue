@@ -1,17 +1,17 @@
 <template>
 <div id="con">
-<form action="" method="post" class="adlog" @submit.prevent="login" enctype='multipart/form-data'>
+<form action="" method="post" id='form' class="adlog" @submit="login" enctype='multipart/form-data'>
   <div class="imgcontainer">
     <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="cont">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required autofocus id="username" v-model="username">
+    <input type="text" placeholder="Enter Username" name="username"  autofocus id="username" v-model="username">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required id="password" v-model="password">
-
+    <input type="password" placeholder="Enter Password" name="password" id="password" v-model="password">
+    
     <button class="adlog" type="submit" name="login" id="login_form">Login</button>
     <label>
       <input class="adlog" type="checkbox" checked="checked" name="remember"> Remember me
@@ -37,7 +37,7 @@ export default {
   methods: {
     login () {
       
-      this.$http.post('', { username: this.username, password: this.password })
+      this.$http.post('/index.php', { username: this.username, password: this.password })
     .then(request => {
       console.log(request);
       if(request.status === 200) {
@@ -46,11 +46,11 @@ export default {
         this.loginFailed()  
       }            
     })
-    .catch((json) => {  
+    .catch(() => {  
       this.loginFailed()
     })
     },
-    loginSuccessful (req) {
+    loginSuccessful () {
     //  if (!req.data.token) {
     // this.loginFailed()
     // return

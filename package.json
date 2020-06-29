@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "animate.css": "^4.1.0",
     "app": "^0.1.0",
     "appjs": "0.0.20",
@@ -15,8 +16,13 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.4",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
+    "mdbreact": "^4.27.0",
+    "mdbvue": "^6.7.1",
+    "mdvue": "0.0.1",
     "popper.js": "^1.16.1",
+    "solid-js": "^0.7.6",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.1.6",
