@@ -14,7 +14,7 @@
             </div>
             <small>Error message</small>
           
-            <label >Password</label>
+            <label>Password</label>
             <div>
                 <input id="password" type="password" v-model="password" >
             </div>
@@ -58,11 +58,12 @@ export default {
             url: "http://localhost/admin/register.php", 
             data: {
                       username : this.username,
-                      email : this.email,
+                      email    : this.email,
                       password : this.password,
                     }, 
           }).then(request => { console.log(request);
             if (request.status ===200){
+            
             this.signupSuccessful(request)
             }else{
                 this.signupFaild()

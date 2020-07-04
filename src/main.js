@@ -19,7 +19,6 @@ import 'vue-videobg'
 
 import 'solid-js'
 
-
 import 'mdbvue'
 
 

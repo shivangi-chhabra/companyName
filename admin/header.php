@@ -48,8 +48,8 @@ if(isset($_GET['crud'])){
     $i = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-    $policies[$i]['id']      = $row['id'];
-    $policies[$i]['Name']    = $row['Name'];
+    $policies[$i]['id']     = $row['id'];
+    $policies[$i]['Name']   = $row['Name'];
     $policies[$i]['Link']   = $row['Link'];
     $i++;
   }
