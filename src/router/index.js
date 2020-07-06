@@ -9,6 +9,8 @@ import Add from '../views/Add.vue'
 import TheContainer from '../views/TheContainer.vue'
 import Practice from '../views/Practice.vue'
 import SignUp from '../views/SignUp.vue'
+import EditHeader from '../views/EditHeader.vue'
+
 
 Vue.use(VueRouter)
 
@@ -57,6 +59,11 @@ Vue.use(VueRouter)
     path: '/signup',
     name: 'SignUp',
     component: SignUp
+  },
+  {
+    path: '/editheader',
+    name: 'EditHeader',
+    component: EditHeader
   }
   
 ]

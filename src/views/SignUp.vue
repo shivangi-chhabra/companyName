@@ -1,29 +1,32 @@
 
 <template>
-    <div>
+    <div id="conn">
         <h4>Register</h4>
         <form  method="post"  id="form1" @submit.prevent="handleSubmit">
             <label >Username</label>
-            <div>
+            <div id="signUp">
                 <input id="username" type="text" v-model="username"  autofocus>
+                <small>Error message</small>
             </div>
-            <small>Error message</small>
+            
             <label >Email</label>
-            <div>
+            <div id="signUp">
                 <input id="email" type="email" v-model="email" >
+                <small>Error message</small>
             </div>
-            <small>Error message</small>
+            
           
             <label>Password</label>
-            <div>
+            <div id="signUp"> 
                 <input id="password" type="password" v-model="password" >
+                <small>Error message</small>
             </div>
-            <small>Error message</small>
+            
             <label >Password</label>
-            <div>
+            <div id="signUp">
                 <input id="password2" type="password" >
             </div>
-            <small>Error message</small>
+            
             <div>
                 <button type="submit" name ="submit"  >
                     Register
@@ -49,6 +52,63 @@ export default {
   },
   mounted(){
     this.handleSubmit();
+    const form = document.getElementById('form1');
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    //const password2 = document.getElementById('password2');
+    form.addEventListener('submit', e => {
+    e.preventDefault();
+    checkInputs();
+    });
+     function checkInputs() {
+    // trim to remove the whitespaces
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    //const password2Value = password2.value.trim();
+    
+    if(usernameValue === '') {
+        setErrorFor(username, 'Username cannot be blank');
+    } else {
+        setSuccessFor(username);
+    }
+    
+    if(emailValue === '') {
+        setErrorFor(email, 'Email cannot be blank');
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, 'Not a valid email');
+    } else {
+        setSuccessFor(email);
+    }
+    
+    if(passwordValue === '') {
+        setErrorFor(password, 'Password cannot be blank');
+    } else {
+        setSuccessFor(password);
+    }
+    
+    /*if(password2Value === '') {
+        setErrorFor(password2, 'Password2 cannot be blank');
+    } else if(passwordValue !== password2Value) {
+        setErrorFor(password2, 'Passwords does not match');
+    } else{
+        setSuccessFor(password2);
+    }*/
+}
+function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = 'form-signin error';
+    small.innerText = message;
+}
+function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-signin success';
+}
+    
+function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);}//eslint-disable-line 
   },
  
   methods:{
@@ -62,7 +122,7 @@ export default {
                       password : this.password,
                     }, 
           }).then(request => { console.log(request);
-            if (request.status ===200){
+            if (request.status === 200){
             
             this.signupSuccessful(request)
             }else{
@@ -93,3 +153,33 @@ export default {
  } 
   }
 </script>
+<style >
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+
+#form1 i {
+  visibility: hidden;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+
+#form1 small {
+  color: #e74c3c;
+  visibility: hidden;
+}
+#signUp.error small {
+  visibility: visible;
+}
+#signUp.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+#conn{
+    width: 555px;
+    margin:auto;
+    margin-top:50px;
+    padding: 5%;
+  }
+</style>

@@ -7,6 +7,7 @@ import 'jquery'
 
 import './assets/css/bootstrap.min.css'
 
+import 'bootstrap'
 
 import './assets/css/font-awesome.min.css'
 import './assets/css/style.css'
