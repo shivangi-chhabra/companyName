@@ -39,10 +39,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 fbox">
                     <h4>CONTENT</h4>
-                    <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p><a href="tel:+902222222222"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> +90 222 222 22 22</a></p>
-                    <p><a href="mailto:iletisim@agrisosgb.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> mail@awebsitename.com</a></p>
-                </div>
+                     <div v-for="element in practice" :key="element">
+                    <p class="text">{{element.Text}}</p>
+                    <p><a href="tel:+902222222222"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>{{element.Phone}}</a></p>
+                    <p><a href="mailto:iletisim@agrisosgb.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>{{element.Email}}</a></p>
+                     </div></div>
             </div>
         </div>
         <div id="copyright">
@@ -66,3 +67,30 @@
         </div>        
     </footer>
 </template>
+<script>
+import axios from 'axios'
+
+
+ export default{
+  name: 'Footer',
+  
+   data:() =>{
+    return{
+      practice:[]
+    }
+    },
+     methods: {
+        getPractice: function () {
+         axios
+      .get('http://localhost/admin/content.php')
+      .then(response => {
+        this.practice = response.data
+      })
+      }
+    },
+    beforeMount() {
+      this.getPractice()
+    }
+}
+
+</script>

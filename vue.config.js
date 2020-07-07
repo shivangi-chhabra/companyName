@@ -7,5 +7,14 @@ module.exports = {
     https: false,
     hotOnly: false,
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        sassOptions: {
+          //....some options here...
+        }
+      }
+    }
+  }
   // ...
 }

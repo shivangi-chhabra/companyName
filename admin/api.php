@@ -107,7 +107,7 @@ if(mysqli_query($conn , $query)){
 
 if($crud == 'delete'){
 
-$id = mysqli_real_escape_string($conn, $_POST['id']);
+$id = mysqli_real_escape_string($conn,$_POST['id']);
 
 $sql = $conn->prepare("DELETE FROM `us` WHERE id=?");
 $sql->bind_param(i, $id);

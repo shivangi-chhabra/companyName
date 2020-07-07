@@ -28,7 +28,7 @@ if(isset($postdata) && !empty($postdata))
 {
 	$request  = json_decode($postdata);
 	$username = mysqli_real_escape_string($conn,trim($request->username));
-    $email = mysqli_real_escape_string($conn,trim($request->email));
+    $email    = mysqli_real_escape_string($conn,trim($request->email));
     $password = mysqli_real_escape_string($conn,trim($request->password));
    
 

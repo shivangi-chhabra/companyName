@@ -38,10 +38,10 @@ if(isset($_GET['crud'])){
 
 
   if($crud == 'read'){
-  $sql = "SELECT * FROM `header`";
+  $sql = "SELECT * FROM `service`";
   $query = $conn->query($sql);
   //print_r($query);
-  $header = array();
+  $service = array();
 
   if($result = mysqli_query($conn,$sql))
   {
@@ -57,7 +57,7 @@ if(isset($_GET['crud'])){
   echo json_encode($policies);
   
 }
-  $out['header'] = $header;
+  $out['service'] = $service;
 
 }
 
@@ -74,16 +74,16 @@ if(isset($postdata) && !empty($postdata))
 $request = json_decode($postdata);
 
 
-$Name = mysqli_real_escape_string($conn, trim($request->Name));
-$Link = mysqli_real_escape_string($conn, trim($request->Link));
+$name = mysqli_real_escape_string($conn, trim($request->name));
+$link = mysqli_real_escape_string($conn, trim($request->link));
 
 
 
 
 
 $query = "
-            INSERT INTO `header` (`Name`, `Link`) 
-            VALUES('{$Name}','{$Link}')";
+            INSERT INTO `service` (`name`, `link`) 
+            VALUES('{$name}','{$link}')";
 
 
 
@@ -97,10 +97,10 @@ $query = "
 
 if($crud == 'update'){
 $id = mysqli_real_escape_string($conn, $_POST['id']);
-$Name = mysqli_real_escape_string($conn, $_POST['Name']);
-$Link  = mysqli_real_escape_string($conn, $_POST['Link']);
+$name = mysqli_real_escape_string($conn, $_POST['name']);
+$link  = mysqli_real_escape_string($conn, $_POST['link']);
 
-$query = "UPDATE `header` SET `Name`='$Name',`Link`='$Link' WHERE `id` = '$id' ";
+$query = "UPDATE `service` SET `name`='$name',`link`='$link' WHERE `id` = '$id' ";
 
 if(mysqli_query($conn , $query)){
     echo "Records edited successfully.";
@@ -116,7 +116,7 @@ if($crud == 'delete'){
 
   $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-  $sql = $conn->prepare("DELETE FROM `header` WHERE id=?");
+  $sql = $conn->prepare("DELETE FROM `service` WHERE id=?");
   $sql->bind_param("s", $id);
   $sql->execute();
 
@@ -131,11 +131,6 @@ if($crud == 'delete'){
   }
   
 }
-
-
-
-
-
  mysqli_close($conn);
- ?>
+?>
 

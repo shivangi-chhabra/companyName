@@ -21,6 +21,8 @@ import 'vue-videobg'
 import 'solid-js'
 
 import 'mdbvue'
+import 'sass-loader'
+import 'vuelidate'
 
 
 import axios from'./backend'

@@ -10,6 +10,8 @@ import TheContainer from '../views/TheContainer.vue'
 import Practice from '../views/Practice.vue'
 import SignUp from '../views/SignUp.vue'
 import EditHeader from '../views/EditHeader.vue'
+import Services from '../views/Services.vue'
+
 
 
 Vue.use(VueRouter)
@@ -64,8 +66,12 @@ Vue.use(VueRouter)
     path: '/editheader',
     name: 'EditHeader',
     component: EditHeader
+  },
+  {
+    path: '/services',
+    name: 'Services',
+    component: Services
   }
-  
 ]
 
 const router = new VueRouter({
