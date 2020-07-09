@@ -1,13 +1,12 @@
 <template>
 <div>
-    <TheContainer />
 <div class="container">
     <h1 class="page-header text-center">Vue.js CRUD Operation with PHP/MySQLi</h1>
     <div id="members">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Member List
+                    <h2>LATEST NEWS 
                     <button class="btn btn-primary pull-right" @click="showAddModal = true"><span class="glyphicon glyphicon-plus"></span> Member</button>
                     </h2>
                 </div>
@@ -25,17 +24,17 @@
 
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th>Address</th>
-                    <th>Telephone</th>
+                    <th>Upload Image</th>
+                    <th>Heading</th>
+                    <th>Text</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="u in us"  v-bind:key="u.id"> 
-                        <td>{{ u.ad }}</td>
-                        <td>{{ u.tel }}</td>
+                    <tr v-for="header in headers"  v-bind:key="header.id"> 
+                        <td>{{ header.Name }}</td>
+                        <td>{{ header.Link }}</td>
                         <td>
-                            <button class="btn btn-success" @click="showEditModal = true; selectMember(u);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(u);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-
+                            <button class="btn btn-success" @click="showEditModal = true; selectMember(header);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(header);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -51,12 +50,12 @@
         </div>
         <div class="modalBody">
             <div class="form-group">
-                <label>Address:</label>
-                <input type="text" class="form-control" v-model="newMember.ad">
+                <label>Name :</label>
+                <input type="text" class="form-control" v-model="newMember.Name">
             </div>
             <div class="form-group">
-                <label>Telephone:</label>
-                <input type="text" class="form-control" v-model="newMember.tel">
+                <label>Link :</label>
+                <input type="text" class="form-control" v-model="newMember.Link">
             </div>
         </div>
         <hr>
@@ -77,12 +76,12 @@
         </div>
         <div class="modalBody">
             <div class="form-group">
-                <label>Address:</label>
-                <input type="text" class="form-control" v-model="clickMember.ad">
+                <label>Name:</label>
+                <input type="text" class="form-control" v-model="clickMember.Name">
             </div>
             <div class="form-group">
-                <label>Telephone:</label>
-                <input type="text" class="form-control" v-model="clickMember.tel">
+                <label>Link:</label>
+                <input type="text" class="form-control" v-model="clickMember.Link">
             </div>
         </div>
         <hr>
@@ -103,7 +102,7 @@
         </div>
         <div class="modalBody">
             <h5 class="text-center">Are you sure you want to Delete</h5>
-            <h2 class="text-center">{{clickMember.ad}} {{clickMember.tel}}</h2>
+            <h2 class="text-center">{{clickMember.Name}} {{clickMember.Link}}</h2>
         </div>
         <hr>
         <div class="modalFooter">
@@ -118,14 +117,11 @@
 </div>
 </template>
 <script>
-import TheContainer from './TheContainer'
+
 import axios from 'axios'
 export default{
-    name: 'Admin',
-    components:{
-     TheContainer
-    }
-    ,
+    name: 'EditHeader',
+    
     data(){
         return{
         showAddModal: false,
@@ -133,8 +129,8 @@ export default{
         showDeleteModal: false,
         errorMessage: "",
         successMessage: "",
-        us: [],
-        newMember: {ad: '', tel: ''},
+        headers: [],
+        newMember: {Name: '', Link: ''},
         clickMember: {}
     }
 },
@@ -146,14 +142,14 @@ export default{
     methods:{
         getAllMembers: function(){
             var self = this;
-            axios.get('http://localhost/admin/api.php')
+            axios.get('http://localhost/admin/header.php')
                 .then(function(response){
                     //console.log(response);
                     if(response.data.error){
                         self.errorMessage = response.data;
                     }
                     else{
-                        self.us = response.data;
+                        self.headers = response.data;
                     }
                 });
         },
@@ -162,10 +158,10 @@ export default{
             //console.log(app.newMember);
             var self = this;
             //debugger;       
-            axios.post('http://localhost/admin/api.php?crud=create', this.newMember)
+            axios.post('http://localhost/admin/header.php?crud=create', this.newMember)
                 .then(function(response){
                     console.log(response);
-                    self.newMember = {ad: '', tel:''};
+                    self.newMember = {Name: '', Link:''};
                     if(response.data.error){
                         self.errorMessage = response.data.message;
                     }
@@ -180,7 +176,7 @@ export default{
             var self = this;
             //debugger;
              var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/api.php?crud=update', memForm)
+            axios.post('http://localhost/admin/header.php?crud=update', memForm)
                 .then(function(response){
                     console.log(response);
                     self.clickMember = {};
@@ -197,7 +193,7 @@ export default{
         deleteMember(){
             var self = this;
             var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/api.php?crud=delete', memForm)
+            axios.post('http://localhost/admin/header.php?crud=delete', memForm)
                 .then(function(response){
                     //console.log(response);
                     self.clickMember = {};
@@ -211,9 +207,9 @@ export default{
                 });
         },
 
-        selectMember(u){
+        selectMember(header){
             var self = this;
-            self.clickMember = u;
+            self.clickMember = header;
         },
 
         toFormData: function(obj){
@@ -308,6 +304,4 @@ export default{
     color: #FFFFFF;
     border:none;
 }
-
-
 </style>

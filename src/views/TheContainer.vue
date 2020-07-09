@@ -60,7 +60,7 @@
             </li>
         </ul>
     </nav>
-     <Add />
+   
 </div>
 </div>
 </template>
@@ -146,14 +146,10 @@ ul ul a {
 </style>
 <script>
 import $ from "jquery";
-import Add from "../views/Add";
+
 export default {
     name: 'comp',
-    components: {
-      Add
-      
-  },
-  
+    
  mounted(){
     $(document).ready(function () {
 

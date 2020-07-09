@@ -46,144 +46,8 @@
             <div class="home_content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12"><h2 class="sub_title">LATEST NEWS</h2></div>
-                        <div class="home_list">
-                            <ul>
-                                <li class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="thumbnail">
-                                        <img src="../assets/img/h1.jpeg" alt="Post">
-                                        <div class="caption">
-                                            <h3><a href="#">Post Title</a></h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            <a href="#" class="btn btn-link" role="button">More</a>
-                                        </div>
-                                    </div>                                        
-                                </li>
-                                <li class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="thumbnail">
-                                        <img src="../assets/img/h2.jpg" class="img-responsive" alt="Post">
-                                        <div class="caption">
-                                            <h3><a href="#">Post Title</a></h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            <a href="#" class="btn btn-link" role="button">More</a>
-                                        </div>
-                                    </div>                                        
-                                </li>
-                                <li class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="thumbnail">
-                                        <img src="../assets/img/h3.jpeg" class="img-responsive" alt="Post">
-                                        <div class="caption">
-                                            <h3><a href="#">Post Title</a></h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            <a href="#" class="btn btn-link" role="button">More</a>
-                                        </div>
-                                    </div>                                        
-                                </li>
-                                <li class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="thumbnail">
-                                        <img src="../assets/img/h4.jpeg" class="img-responsive" alt="Post">
-                                        <div class="caption">
-                                            <h3><a href="#">Post Title</a></h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            <a href="#" class="btn btn-link" role="button">More</a>
-                                        </div>
-                                    </div>                                        
-                                </li>                                    
-                            </ul>
-                        </div>
-                        
-                        <div class="col-sm-9 home_bottom">
-                            <h2 class="sub_title">REFERENCES</h2>
-                            <div class="clearfix"></div>
-                            <div class="row">
-                                <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="6000" id="myCarousel">
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <div class="col-md-2 col-sm-6 col-xs-12 p10">
-                                                <a href="#"><img src="../assets/img/l1.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12 p10">
-                                                <a href="#"><img src="../assets/img/l2.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l3.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l4.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l5.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l6.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l7.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l8.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12 p10">
-                                                <a href="#"><img src="../assets/img/l1.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12 p10">
-                                                <a href="#"><img src="../assets/img/l2.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l3.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l4.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l5.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l6.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l7.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                                <a href="#"><img src="../assets/img/l8.jpg" class="img-responsive" alt="Reference"></a>
-                                            </div>
-                                        </div>                                        
-                                    </div>
-                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                    <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                </div>
-                            </div>                            
-                        </div>
+                        <LatestNews />
+                        <Refrence />
                         <Call />
                     </div>
                 </div>
@@ -195,20 +59,23 @@
 </template>
 
 <script>
-import $ from "jquery"
-import 'bootstrap'
+
 import axios from 'axios' //eslint-disable-line
 import Call from '@/components/Call.vue' 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue"
 import Service from "@//components/Service.vue"
+import LatestNews from "@/components/LatestNews.vue";
+import Refrence from "@/components/Refrence.vue";
   export default {
   name: 'Home',
   components: {
       Call,
       Header,
       Footer,
-      Service
+      Service,
+      LatestNews,
+      Refrence
       
   },
 
@@ -241,32 +108,7 @@ import Service from "@//components/Service.vue"
     }
 
   },
-     mounted(){
-
-         $("#prospects_form").submit(function(e) {
-    e.preventDefault();
-});
-      
-   $('.carousel[data-type="multi"] .item').each(function(){
-       $('.carousel').carousel({
-          interval: 2000
-        })
-          this.next = $(this).next();
-          if (!this.next.length) {
-            this.next = $(this).siblings(':first');
-          }
-          this.next.children(':first-child').clone().appendTo($(this));
-
-          for (var i=0;i<4;i++) {
-            this.next=this.next.next();
-            if (!this.next.length) {
-                this.next = $(this).siblings(':first');
-            }
-
-            this.next.children(':first-child').clone().appendTo($(this));
-          }
-        });    
-    }
+     
 
     
 

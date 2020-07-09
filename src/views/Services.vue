@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="container">
-    <h1 class="page-header text-center">The </h1>
+    <h1 class="page-header text-center"> </h1>
     <div id="members">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
@@ -45,7 +45,7 @@
 <div class="myModal" v-if="showAddModal">
     <div class="modalContainer">
         <div class="modalHeader">
-            <span class="headerTitle">Add New Member</span>
+            <span class="headerTitle">Add New Service</span>
             <button class="closeBtn pull-right" @click="showAddModal = false">&times;</button>
         </div>
         <div class="modalBody">
@@ -71,7 +71,7 @@
 <div class="myModal" v-if="showEditModal">
     <div class="modalContainer">
         <div class="editHeader">
-            <span class="headerTitle">Edit Member</span>
+            <span class="headerTitle">Edit Services</span>
             <button class="closeEditBtn pull-right" @click="showEditModal = false">&times;</button>
         </div>
         <div class="modalBody">
@@ -97,7 +97,7 @@
 <div class="myModal" v-if="showDeleteModal">
     <div class="modalContainer">
         <div class="deleteHeader">
-            <span class="headerTitle">Delete Member</span>
+            <span class="headerTitle">Delete Service</span>
             <button class="closeDelBtn pull-right" @click="showDeleteModal = false">&times;</button>
         </div>
         <div class="modalBody">
@@ -142,7 +142,7 @@ export default{
     methods:{
         getAllMembers: function(){
             var self = this;
-            axios.get('http://localhost/admin/service.php')
+            axios.get('http://localhost/admin/services.php')
                 .then(function(response){
                     //console.log(response);
                     if(response.data.error){
@@ -158,7 +158,7 @@ export default{
             //console.log(app.newMember);
             var self = this;
             //debugger;       
-            axios.post('http://localhost/admin/service.php?crud=create', this.newMember)
+            axios.post('http://localhost/admin/services.php?crud=create', this.newMember)
                 .then(function(response){
                     console.log(response);
                     self.newMember = {Name: '', Link:''};
@@ -176,7 +176,7 @@ export default{
             var self = this;
             //debugger;
              var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/service.php?crud=update', memForm)
+            axios.post('http://localhost/admin/services.php?crud=update', memForm)
                 .then(function(response){
                     console.log(response);
                     self.clickMember = {};
@@ -193,7 +193,7 @@ export default{
         deleteMember(){
             var self = this;
             var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/service.php?crud=delete', memForm)
+            axios.post('http://localhost/admin/services.php?crud=delete', memForm)
                 .then(function(response){
                     //console.log(response);
                     self.clickMember = {};

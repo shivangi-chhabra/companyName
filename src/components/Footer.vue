@@ -11,19 +11,7 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>                        
                     </ul>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 fbox">
-                    <h4>SERVICES</h4>
-                    <ul class="big">
-                        <li><a href="#" title="">Title One</a></li>
-                        <li><a href="#" title="">Title Two</a></li>
-                        <li><a href="#" title="">Title Three</a></li>
-                        <li><a href="#" title="">Title Four</a></li>
-                        <li><a href="#" title="">Title Five</a></li>
-                        <li><a href="#" title="">Title Six</a></li>
-                        <li><a href="#" title="">Title Seven</a></li>
-                        <li><a href="#" title="">Title Eight</a></li>
-                    </ul>
-                </div>
+                <Fservice />
                 <div class="col-md-3 col-sm-6 col-xs-12 fbox">
                     <h4>CONTENT</h4>
                     <ul class="big">
@@ -39,7 +27,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 fbox">
                     <h4>CONTENT</h4>
-                     <div v-for="element in practice" :key="element">
+                     <div v-for="element in practice" :key="element.id">
                     <p class="text">{{element.Text}}</p>
                     <p><a href="tel:+902222222222"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>{{element.Phone}}</a></p>
                     <p><a href="mailto:iletisim@agrisosgb.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>{{element.Email}}</a></p>
@@ -69,7 +57,7 @@
 </template>
 <script>
 import axios from 'axios'
-
+import Fservice from './Fservice'
 
  export default{
   name: 'Footer',
@@ -78,6 +66,11 @@ import axios from 'axios'
     return{
       practice:[]
     }
+    },
+    components:{
+
+        Fservice
+
     },
      methods: {
         getPractice: function () {
