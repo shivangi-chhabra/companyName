@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>LATEST NEWS 
+                    <h2> Description of Services List
                     <button class="btn btn-primary pull-right" @click="showAddModal = true"><span class="glyphicon glyphicon-plus"></span> Member</button>
                     </h2>
                 </div>
@@ -24,18 +24,19 @@
 
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th>Upload Image</th>
+                    <th>Class</th>
                     <th>Heading</th>
                     <th>Text</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="image in images"  v-bind:key="image.id">
-                        <td><img :src="'data:image.png;base64,' + image.image"></td> 
-                        <td>{{ image.Heading }}</td>
-                        <td>{{ image.Text }}</td>
+                    <tr v-for="detail in details"  v-bind:key="detail.id">
+                        <td> {{detail.Class}}</td>
+                        <td>{{ detail.Heading }}</td>
+                        <td>{{ detail.Text }}</td>
                         <td>
-                            <button class="btn btn-success" @click="showEditModal = true; selectMember(image);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(image);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            <button class="btn btn-success" @click="showEditModal = true; selectMember(detail);"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(detail);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+
                         </td>
                     </tr>
                 </tbody>
@@ -45,14 +46,14 @@
 <!-- Add Modal -->
 <div class="myModal" v-if="showAddModal">
     <div class="modalContainer">
-        <div class="modalHeader">
-            <span class="headerTitle">Add New Member</span>
+        <div class="modaldetail">
+            <span class="detailTitle">Add New Service</span>
             <button class="closeBtn pull-right" @click="showAddModal = false">&times;</button>
         </div>
         <div class="modalBody">
-             <div class="form-group">
-                <label>Upload Image :</label>
-                <input type="file" class="form-control" @change = "onFileSelected" accept="image/*">
+            <div class="form-group">
+                <label>Class :</label>
+                <input type="text" class="form-control" v-model="newMember.Class">
             </div>
             <div class="form-group">
                 <label>Heading :</label>
@@ -75,21 +76,22 @@
 <!-- Edit Modal -->
 <div class="myModal" v-if="showEditModal">
     <div class="modalContainer">
-        <div class="editHeader">
-            <span class="headerTitle">Edit News</span>
+        <div class="editdetail">
+            <span class="detailTitle">Edit Services</span>
             <button class="closeEditBtn pull-right" @click="showEditModal = false">&times;</button>
         </div>
         <div class="modalBody">
             <div class="form-group">
-                <label>Upload Image :</label>
-                <input type="file" class="form-control" >
+                <label>Class :</label>
+                <input type="text" class="form-control" v-model="clickMember.Class">
             </div>
+        <div class="modalBody">
             <div class="form-group">
-                <label>Heading :</label>
+                <label>Heading:</label>
                 <input type="text" class="form-control" v-model="clickMember.Heading">
             </div>
             <div class="form-group">
-                <label>Text :</label>
+                <label>Text:</label>
                 <input type="text" class="form-control" v-model="clickMember.Text">
             </div>
         </div>
@@ -105,13 +107,12 @@
 <!-- Delete Modal -->
 <div class="myModal" v-if="showDeleteModal">
     <div class="modalContainer">
-        <div class="deleteHeader">
-            <span class="headerTitle">Delete Member</span>
+        <div class="deletedetail">
+            <span class="detailTitle">Delete Service</span>
             <button class="closeDelBtn pull-right" @click="showDeleteModal = false">&times;</button>
         </div>
         <div class="modalBody">
             <h5 class="text-center">Are you sure you want to Delete</h5>
-            <img :src="'data:image.png;base64,' + clickMember.image">
             <h2 class="text-center">{{clickMember.Heading}} {{clickMember.Text}}</h2>
         </div>
         <hr>
@@ -125,12 +126,13 @@
 </div>
 </div>
 </div>
+</div>
 </template>
 <script>
 
 import axios from 'axios'
 export default{
-    name: 'EditHeader',
+    name: 'Editdetail',
     
     data(){
         return{
@@ -139,10 +141,9 @@ export default{
         showDeleteModal: false,
         errorMessage: "",
         successMessage: "",
-        images: [],
-        newMember: {image: '', Heading: '', Text: ''},
-        clickMember: {},
-        selectedFile: null
+        details: [],
+        newMember: {Class: '', Heading: '', Text: ''},
+        clickMember: {}
     }
 },
 
@@ -153,14 +154,14 @@ export default{
     methods:{
         getAllMembers: function(){
             var self = this;
-            axios.get('http://localhost/admin/news.php')
+            axios.get('http://localhost/admin/comp.php')
                 .then(function(response){
                     //console.log(response);
                     if(response.data.error){
                         self.errorMessage = response.data;
                     }
                     else{
-                        self.images = response.data;
+                        self.details = response.data;
                     }
                 });
         },
@@ -168,13 +169,11 @@ export default{
         saveMember: function(){
             //console.log(app.newMember);
             var self = this;
-            const newMember = new FormData();
-            newMember.append('image',this.selectedFile, this.selectedFile.name) 
             //debugger;       
-            axios.post('http://localhost/admin/news.php?crud=create', this.newMember)
+            axios.post('http://localhost/admin/comp.php?crud=create', this.newMember)
                 .then(function(response){
                     console.log(response);
-                    self.newMember = {image: '', Heading: '', Text:''};
+                    self.newMember = {Heading: '', Text:''};
                     if(response.data.error){
                         self.errorMessage = response.data.message;
                     }
@@ -189,7 +188,7 @@ export default{
             var self = this;
             //debugger;
              var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/news.php?crud=update', memForm)
+            axios.post('http://localhost/admin/comp.php?crud=update', memForm)
                 .then(function(response){
                     console.log(response);
                     self.clickMember = {};
@@ -206,7 +205,7 @@ export default{
         deleteMember(){
             var self = this;
             var memForm = self.toFormData(self.clickMember);
-            axios.post('http://localhost/admin/news.php?crud=delete', memForm)
+            axios.post('http://localhost/admin/comp.php?crud=delete', memForm)
                 .then(function(response){
                     //console.log(response);
                     self.clickMember = {};
@@ -220,23 +219,9 @@ export default{
                 });
         },
 
-        selectMember(image){
+        selectMember(detail){
             var self = this;
-            self.clickMember = image;
-        },
-        onFileSelected(event){
-            var self = this;
-            self.selectedFile = event.target.image[0];
-            //self.createBase64Image(selectedFile);
-        },
-        createBase64Image(fileObject){
-
-            const render = FileReader();
-            
-            render.onload = (e) => {
-                this.image = e.target.result;
-            }
-          render.readAsBinaryString(fileObject);
+            self.clickMember = detail;
         },
 
         toFormData: function(obj){
@@ -252,8 +237,7 @@ export default{
         clearMessage: function(){
             this.errorMessage = '';
             this.successMessage = '';
-        },
-        
+        }
 
     }
 }
@@ -275,7 +259,7 @@ export default{
     margin-top:50px;
 }
 
-.modalHeader{
+.modaldetail{
     padding:10px;
     background: #008CBA;
     color: #FFFFFF;
@@ -284,7 +268,7 @@ export default{
     padding-left:15px;
 }
 
-.editHeader{
+.editdetail{
     padding:10px;
     background: #4CAF50;
     color: #FFFFFF;
@@ -293,7 +277,7 @@ export default{
     padding-left:15px;
 }
 
-.deleteHeader{
+.deletedetail{
     padding:10px;
     background: #f44336;
     color: #FFFFFF;
@@ -332,4 +316,6 @@ export default{
     color: #FFFFFF;
     border:none;
 }
+
+
 </style>

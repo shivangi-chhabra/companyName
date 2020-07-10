@@ -39,10 +39,9 @@
                                 <li><a href="#" title="">SUB MENU 3</a></li>
                             </ul>
                         </li>
-                        <li><router-link to = '/page'>PAGE</router-link></li>
-                        <li><router-link to="/category" >CATEGORY</router-link></li>
-                        <li><a href="#" title="">MENU ITEM</a></li>
-                        <li><router-link to="/login" >LOGIN IN</router-link></li>
+                        <li v-for="element in practice" :key="element.id">
+                        <router-link :to="element.Link">{{element.Name}}</router-link></li>
+                        
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->
@@ -50,3 +49,29 @@
 		</nav>        
     </header>
 </template>
+<script>
+import axios from 'axios'
+
+
+ export default{
+  name: '',
+  
+   data:() =>{
+    return{
+      practice:[]
+    }
+    },
+     methods: {
+        getPractice: function () {
+         axios
+      .get('http://localhost/admin/header.php')
+      .then(response => {
+        this.practice = response.data
+      })
+      }
+    },
+    beforeMount() {
+      this.getPractice()
+    }
+}
+</script>

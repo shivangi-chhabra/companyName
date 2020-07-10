@@ -10,7 +10,9 @@ import TheContainer from '../views/TheContainer.vue'
 import Practice from '../views/Practice.vue'
 import SignUp from '../views/SignUp.vue'
 import EditHeader from '../views/EditHeader.vue'
+import EditService from '../views/EditService.vue'
 import Services from '../views/Services.vue'
+import Addnews from '../views/Addnews.vue'
 
 
 
@@ -68,9 +70,19 @@ Vue.use(VueRouter)
     component: EditHeader
   },
   {
+    path: '/editservice',
+    name: 'EditService',
+    component: EditService
+  },
+  {
     path: '/services',
     name: 'Services',
     component: Services
+  },
+  {
+    path: '/addnews',
+    name: 'Addnews',
+    component: Addnews
   }
 ]
 

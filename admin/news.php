@@ -4,19 +4,20 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
-$Name="";                                 
-$Link = "";
+$image="";                                 
+$Heading = "";
+$Text = "";
 $policies = [];
 
 
- $serverName = "localhost";
+ $serverHeading = "localhost";
  $database = "contact1";
- $userName = "root";
+ $userHeading = "root";
  $password = "";
  
  // Create connection
  
- $conn = mysqli_connect($serverName, $userName, $password, $database);
+ $conn = mysqli_connect($serverHeading, $userHeading, $password, $database);
  
  // Check connection
  
@@ -38,10 +39,10 @@ if(isset($_GET['crud'])){
 
 
   if($crud == 'read'){
-  $sql = "SELECT * FROM `service`";
+  $sql = "SELECT * FROM `news`";
   $query = $conn->query($sql);
   //print_r($query);
-  $service = array();
+  $news = array();
 
   if($result = mysqli_query($conn,$sql))
   {
@@ -49,18 +50,18 @@ if(isset($_GET['crud'])){
   while($row = mysqli_fetch_assoc($result))
   {
     $policies[$i]['id']      = $row['id'];
-    $policies[$i]['Name']    = $row['Name'];
-    $policies[$i]['Link']   = $row['Link'];
+    $policies[$i]['image']   = base64_encode($row['image']);
+    $policies[$i]['Heading'] = $row['Heading'];
+    $policies[$i]['Text']    = $row['Text'];
     $i++;
   }
   
   echo json_encode($policies);
   
 }
-  $out['service'] = $service;
+  $out['news'] = $news;
 
 }
-
 
 if($crud == 'create'){
 
@@ -73,18 +74,17 @@ if(isset($postdata) && !empty($postdata))
 
 $request = json_decode($postdata);
 
-
-$Name = mysqli_real_escape_string($conn, trim($request->Name));
-$Link = mysqli_real_escape_string($conn, trim($request->Link));
+$image = mysqli_real_escape_string($conn, trim($request->image));
+$Heading = mysqli_real_escape_string($conn, trim($request->Heading));
+$Text = mysqli_real_escape_string($conn, trim($request->Text));
 
 
 
 
 
 $query = "
-            INSERT INTO `service` (`Name`, `Link`) 
-            VALUES('{$Name}','{$Link}')";
-
+            INSERT INTO `news` (`image`,`Heading`, `Text`) 
+            VALUES('{$image}','{$Heading}','{$Text}')";
 
 
   if(mysqli_query($conn , $query)){
@@ -96,11 +96,12 @@ $query = "
 }
 
 if($crud == 'update'){
-$id = mysqli_real_escape_string($conn, $_POST['id']);
-$Name = mysqli_real_escape_string($conn, $_POST['Name']);
-$Link  = mysqli_real_escape_string($conn, $_POST['Link']);
+$id      = mysqli_real_escape_string($conn, $_POST['id']);
+$image   = mysqli_real_escape_string($conn, $_POST['image']);
+$Heading = mysqli_real_escape_string($conn, $_POST['Heading']);
+$Text    = mysqli_real_escape_string($conn, $_POST['Text']);
 
-$query = "UPDATE `service` SET `Name`='$Name',`Link`='$Link' WHERE `id` = '$id' ";
+$query = "UPDATE `news` SET `image`= $image, `Heading`='$Heading',`Text`='$Text' WHERE `id` = '$id' ";
 
 if(mysqli_query($conn , $query)){
     echo "Records edited successfully.";
@@ -116,7 +117,7 @@ if($crud == 'delete'){
 
   $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-  $sql = $conn->prepare("DELETE FROM `service` WHERE id=?");
+  $sql = $conn->prepare("DELETE FROM `news` WHERE id=?");
   $sql->bind_param("s", $id);
   $sql->execute();
 
@@ -130,6 +131,6 @@ if($crud == 'delete'){
   }
   
 }
+
  mysqli_close($conn);
 ?>
-

@@ -1,66 +1,43 @@
 <template>
 <div>
-  <div id="content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-justify"></i> 
-            </button>
-
-        </div>
-    </nav>
-</div>
+  
  <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+            <h3>Menu Bar</h3>
         </div>
 
         <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
+            <p>Content</p>
             <li class="active">
               <router-link to="/" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Home </router-link>
                <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>-->
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
+                
+            <li>
+                <router-link to="/add" style="color: #fff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Header </router-link>
             </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <a style="color: #fff" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Footer</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Page 1</a>
+                        <router-link style="color: #fff" to="/service" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Services </router-link>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
+                        <router-link  style="color: #fff" to="/editfooter" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Contact </router-link>
                     </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
+                    
                 </ul>
             </li>
-            <li>
-                <a href="#">Portfolio</a>
+            <li >
+                <router-link style="color: #fff" to="/addnews" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Latest News </router-link>
             </li>
             <li>
-                <a href="#">Contact</a>
+                 <router-link  style="color: #fff" to="/editservice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Service </router-link>
             </li>
         </ul>
     </nav>
-   
+     <H1>Welcome!</H1>
 </div>
 </div>
 </template>
@@ -122,7 +99,7 @@ a[data-toggle="collapse"] {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    
     background: #fff;
 }
 
@@ -133,8 +110,10 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    
+    
 }
+
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -150,6 +129,7 @@ import $ from "jquery";
 export default {
     name: 'comp',
     
+  
  mounted(){
     $(document).ready(function () {
 

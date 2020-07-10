@@ -1,6 +1,6 @@
 <template>
 <div id="con">
-<form action="" method="post" id='form' class="adlog" @submit="login" enctype='multipart/form-data'>
+<form action="" method="post" id='form' class="adlog" @submit.prevent="login" enctype='multipart/form-data'>
   <div class="imgcontainer">
     <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
   </div>
@@ -59,7 +59,7 @@ export default {
      // localStorage.token = req.data.token
      this.error = false
       console.log('----');
-     this.$router.replace('/menu')
+     this.$router.replace('/thecontainer')
      },
 
     loginFailed () {
