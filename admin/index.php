@@ -36,8 +36,17 @@ if(isset($postdata) && !empty($postdata))
     $row    = mysqli_fetch_array($result, MYSQLI_ASSOC);  
     $count  = mysqli_num_rows($result);  
           
+
     if($count == 1){  
-         echo " Login successful"; 
+        echo " Login successful"; 
+        $myObj = new stdClass;;  
+        $myObj->message = "Login successful";
+        $myObj->token = md5(date('Y-m-d h:i:s'));
+        
+
+        $myJSON = json_encode($myObj);
+        setcookie("data", $myJSON, time()+ 60*60*60,'/');
+        echo $myJSON;   
          
          
     }  

@@ -44,15 +44,47 @@ Vue.use(VueRouter)
     name: 'Menu',
     component: Menu
   },
-  {
-    path: '/Add',
-    name: 'Add',
-    component: Add
-  },
+  
   {
     path: '/thecontainer',
     name: 'TheContainer',
-    component: TheContainer
+    component: TheContainer,
+    beforeEnter(to, from, next) {
+      let currentUser = JSON.parse(window.localStorage.currentUser);
+      if(currentUser && currentUser.admin) {
+        next();
+      } else {
+        next("/");
+      }
+    },
+    children: [
+      {
+        path: 'editheader',
+        name: 'EditHeader',
+        component: EditHeader
+      },
+      {
+        path: 'editservice',
+        name: 'EditService',
+        component: EditService
+      },
+      {
+        path: 'services',
+        name: 'Services',
+        component: Services
+      },
+      {
+        path: 'addnews',
+        name: 'Addnews',
+        component: Addnews
+      },
+      {
+        path: 'Add',
+        name: 'Add',
+        component: Add
+      }
+
+    ]
   },
   {
     path: '/practice',
@@ -64,26 +96,7 @@ Vue.use(VueRouter)
     name: 'SignUp',
     component: SignUp
   },
-  {
-    path: '/editheader',
-    name: 'EditHeader',
-    component: EditHeader
-  },
-  {
-    path: '/editservice',
-    name: 'EditService',
-    component: EditService
-  },
-  {
-    path: '/services',
-    name: 'Services',
-    component: Services
-  },
-  {
-    path: '/addnews',
-    name: 'Addnews',
-    component: Addnews
-  }
+  
 ]
 
 const router = new VueRouter({
