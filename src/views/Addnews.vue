@@ -142,7 +142,7 @@ export default{
         images: [],
         newMember: {image: '', Heading: '', Text: ''},
         clickMember: {},
-        selectedFile: null
+        
     }
 },
 
@@ -168,8 +168,7 @@ export default{
         saveMember: function(){
             //console.log(app.newMember);
             var self = this;
-            const newMember = new FormData();
-            newMember.append('image',this.selectedFile, this.selectedFile.name) 
+            
             //debugger;       
             axios.post('http://localhost/admin/news.php?crud=create', this.newMember)
                 .then(function(response){
@@ -224,20 +223,7 @@ export default{
             var self = this;
             self.clickMember = image;
         },
-        onFileSelected(event){
-            var self = this;
-            self.selectedFile = event.target.image[0];
-            //self.createBase64Image(selectedFile);
-        },
-        createBase64Image(fileObject){
-
-            const render = FileReader();
-            
-            render.onload = (e) => {
-                this.image = e.target.result;
-            }
-          render.readAsBinaryString(fileObject);
-        },
+        
 
         toFormData: function(obj){
             var form_data = new FormData();

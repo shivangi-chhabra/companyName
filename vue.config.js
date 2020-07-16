@@ -1,4 +1,5 @@
 module.exports = {
+
   // ...
   devServer: {
     open: process.platform === 'darwin',
@@ -7,14 +8,11 @@ module.exports = {
     https: false,
     hotOnly: false,
   },
-  css: {
-    loaderOptions: {
-      sass: {
-        sassOptions: {
-          //....some options here...
-        }
-      }
-    }
-  }
   // ...
+
+
+  
+  
 }
+
+

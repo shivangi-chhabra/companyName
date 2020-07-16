@@ -25,7 +25,8 @@ import 'sass-loader'
 import 'vuelidate'
 
 
-import axios from'./backend'
+import axios from './backend'
+
 
 
 
@@ -34,5 +35,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   axios,
+ 
   render: h => h(App)
 }).$mount('#app')

@@ -6,17 +6,18 @@ import Category from '../views/Category.vue'
 import Login from '../views/Login.vue'
 import Menu from '../views/Menu.vue'
 import Add from '../views/Add.vue'
-import TheContainer from '../views/TheContainer.vue'
+import AdminTheContainer from '../views/AdminTheContainer.vue'
 import Practice from '../views/Practice.vue'
 import SignUp from '../views/SignUp.vue'
 import EditHeader from '../views/EditHeader.vue'
 import EditService from '../views/EditService.vue'
 import Services from '../views/Services.vue'
 import Addnews from '../views/Addnews.vue'
-
+//import Admin from '../views/Admin.vue'
 
 
 Vue.use(VueRouter)
+
 
   const routes = [
   {
@@ -46,40 +47,37 @@ Vue.use(VueRouter)
   },
   
   {
-    path: '/thecontainer',
-    name: 'TheContainer',
-    component: TheContainer,
-    beforeEnter(to, from, next) {
-      let currentUser = JSON.parse(window.localStorage.currentUser);
-      if(currentUser && currentUser.admin) {
-        next();
-      } else {
-        next("/");
-      }
-    },
+    path: '/adminthecontainer',
+    name: 'Adminthecontainer',
+    component: AdminTheContainer,
+    
+        meta: {
+          requiresAuth: true
+      },
+    
     children: [
       {
-        path: 'editheader',
+        path: '/editheader',
         name: 'EditHeader',
         component: EditHeader
       },
       {
-        path: 'editservice',
+        path: '/editservice',
         name: 'EditService',
         component: EditService
       },
       {
-        path: 'services',
+        path: '/services',
         name: 'Services',
         component: Services
       },
       {
-        path: 'addnews',
+        path: '/addnews',
         name: 'Addnews',
         component: Addnews
       },
       {
-        path: 'Add',
+        path: '/add',
         name: 'Add',
         component: Add
       }
@@ -105,4 +103,11 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const authenticatedUser = null;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && ! authenticatedUser) next('login')
+  else next();
+});
 export default router

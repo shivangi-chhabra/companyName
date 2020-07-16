@@ -1,4 +1,5 @@
 <template>
+
 <div id="con">
 <form action="" method="post" id='form' class="adlog" @submit.prevent="login" enctype='multipart/form-data'>
   <div class="imgcontainer">
@@ -23,6 +24,7 @@
   </div>
 </form>
 </div>
+
 </template>
 <script>
 export default {
@@ -41,7 +43,8 @@ export default {
     .then(request => {
       console.log(request);
       if(request.status === 200) {
-        this.loginSuccessful(request)  
+        this.loginSuccessful(request) 
+
       } else {
         this.loginFailed()  
       }            
@@ -51,21 +54,26 @@ export default {
     })
     },
     loginSuccessful () {
-    //  if (!req.data.token) {
-    // this.loginFailed()
+      //console.log(!req.data.token );
+     // if (!req.data.token) {
+     //this.loginFailed()
     // return
-    //  }
+      //}
 
-     // localStorage.token = req.data.token
+    // localStorage.token = req.data.token
+    
      this.error = false
-      console.log('----');
-     this.$router.replace('/thecontainer')
+     //console.log('----');
+     //this.navigate({path: '/adminthecontainer'})
+     this.$router.replace('/add')
+     //this.$cookie.set('api_token', request.data.access_token, 1);
      },
 
     loginFailed () {
     this.error = 'Login failed!'
     delete localStorage.token
     }
+    
   }
 }
 </script>
