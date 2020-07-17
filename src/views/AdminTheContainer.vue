@@ -1,9 +1,6 @@
 <template>
 <div>
 
-    <router-view />
- 
-  
  <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
@@ -18,7 +15,7 @@
                <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>-->
                 
             <li>
-                <router-link to="/add" style="color: #fff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Header </router-link>
+                <router-link to="/editHeader" style="color: #fff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Header </router-link>
             </li>
             <li>
                 <a style="color: #fff" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Footer</a>
@@ -40,7 +37,7 @@
             </li>
         </ul>
     </nav>
-     <H1>Welcome!</H1>
+     <router-view />
 </div>
 </div>
 </template>

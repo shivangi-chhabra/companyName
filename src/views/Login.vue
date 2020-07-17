@@ -53,19 +53,19 @@ export default {
       this.loginFailed()
     })
     },
-    loginSuccessful () {
-      //console.log(!req.data.token );
-     // if (!req.data.token) {
-     //this.loginFailed()
-    // return
-      //}
+    loginSuccessful (req) {
+      console.log(!req.data.token );
+     if (!req.data.token) {
+     this.loginFailed()
+    return
+    }
 
-    // localStorage.token = req.data.token
+    localStorage.token = req.data.token
     
      this.error = false
      //console.log('----');
      //this.navigate({path: '/adminthecontainer'})
-     this.$router.replace('/add')
+     this.$router.replace('/admin')
      //this.$cookie.set('api_token', request.data.access_token, 1);
      },
 

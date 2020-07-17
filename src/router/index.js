@@ -6,14 +6,14 @@ import Category from '../views/Category.vue'
 import Login from '../views/Login.vue'
 import Menu from '../views/Menu.vue'
 import Add from '../views/Add.vue'
-import AdminTheContainer from '../views/AdminTheContainer.vue'
+//import AdminTheContainer from '../views/AdminTheContainer.vue'
 import Practice from '../views/Practice.vue'
 import SignUp from '../views/SignUp.vue'
 import EditHeader from '../views/EditHeader.vue'
 import EditService from '../views/EditService.vue'
 import Services from '../views/Services.vue'
 import Addnews from '../views/Addnews.vue'
-//import Admin from '../views/Admin.vue'
+import Admin from '../views/Admin.vue'
 
 
 Vue.use(VueRouter)
@@ -47,15 +47,21 @@ Vue.use(VueRouter)
   },
   
   {
-    path: '/adminthecontainer',
-    name: 'Adminthecontainer',
-    component: AdminTheContainer,
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
     
-        meta: {
-          requiresAuth: true
-      },
+    beforeEnter(to, from, next) {
+      let currentUser = localStorage.getItem('token');
+      if(currentUser) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
     
     children: [
+      
       {
         path: '/editheader',
         name: 'EditHeader',
@@ -103,11 +109,5 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const authenticatedUser = null;
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && ! authenticatedUser) next('login')
-  else next();
-});
 export default router

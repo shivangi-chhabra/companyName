@@ -1,7 +1,6 @@
 <template>
 <div>
 <div class="container">
-    <h1 class="page-header text-center">Vue.js CRUD Operation with PHP/MySQLi</h1>
     <div id="members">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
