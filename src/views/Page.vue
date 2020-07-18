@@ -1,5 +1,6 @@
 <template>
 <div>
+    <Header />
     <div class="bread_area">
         <div class="container">
             <div class="row">
@@ -45,3 +46,12 @@
     </main>
 </div>
 </template>
+<script>
+import Header from '../components/Header'
+export default {
+    components:{
+        Header
+    }
+    
+}
+</script>

@@ -65,7 +65,7 @@ export default {
      this.error = false
      //console.log('----');
      //this.navigate({path: '/adminthecontainer'})
-     this.$router.replace('/admin')
+     this.$router.replace('/admin').catch(()=>{});
      //this.$cookie.set('api_token', request.data.access_token, 1);
      },
 

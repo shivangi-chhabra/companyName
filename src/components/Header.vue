@@ -41,7 +41,12 @@
                         </li>
                         <li v-for="element in practice" :key="element.id">
                         <router-link :to="element.Link">{{element.Name}}</router-link></li>
-                        
+                        <li v-if="user">
+                   <router-link to="/" @click="logout">Logout</router-link>
+              </li>
+              <li v-else>
+               <router-link to="/login">Login</router-link>
+              </li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->
@@ -55,12 +60,16 @@ import axios from 'axios'
 
  export default{
   name: '',
+
   
    data:() =>{
     return{
       practice:[]
     }
     },
+    created () { 
+       this.user= localStorage.getItem('token') || false;
+    }, 
      methods: {
         getPractice: function () {
          axios
@@ -68,10 +77,21 @@ import axios from 'axios'
       .then(response => {
         this.practice = response.data
       })
-      }
+      },
+      logout() {
+                axios.post('http://localhost/admin/logout.php').then(response => {
+                    if (response.status === 401) {
+                        console.log('logout')
+                    }
+                }),
+                localStorage.removeItem('token')
+
+                this.$router.push('/').catch(()=>{});
+              },  
     },
     beforeMount() {
       this.getPractice()
+      this.logout()
     }
 }
 </script>

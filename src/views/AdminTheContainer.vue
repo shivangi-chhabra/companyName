@@ -21,7 +21,7 @@
                 <a style="color: #fff" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Footer</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <router-link style="color: #fff" to="/service" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Services </router-link>
+                        <router-link style="color: #fff" to="/services" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Services </router-link>
                     </li>
                     <li>
                         <router-link  style="color: #fff" to="/editfooter" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Contact </router-link>
