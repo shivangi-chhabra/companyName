@@ -36,12 +36,28 @@ export default {
       error: false
     }
   },
+   created () {
+  this.checkCurrentLogin()
+  },
+  updated () {
+  this.checkCurrentLogin()
+  },
   methods: {
+    checkCurrentLogin () {
+    if (localStorage.token) {
+      if(localStorage.user === 'Admin'){
+      this.$router.replace('/admin')
+      }
+      else {
+        this.$router.replace('/')
+      }
+    }
+  },
     login () {
       
       this.$http.post('/index.php', { username: this.username, password: this.password })
     .then(request => {
-      console.log(request);
+      
       if(request.status === 200) {
         this.loginSuccessful(request) 
 
@@ -54,24 +70,35 @@ export default {
     })
     },
     loginSuccessful (req) {
-      console.log(!req.data.token );
-     if (!req.data.token) {
+     
+     if (req.data.token == null)  {
      this.loginFailed()
     return
     }
 
-    localStorage.token = req.data.token
+    localStorage.token    = req.data.token
+    localStorage.username = req.data.username
+
     
+    
+     if (localStorage.username === 'Admin'){
+        //console.log(localStorage.username)
      this.error = false
+    
      //console.log('----');
      //this.navigate({path: '/adminthecontainer'})
      this.$router.replace('/admin').catch(()=>{});
      //this.$cookie.set('api_token', request.data.access_token, 1);
+     }
+
+     else{
+     this.$router.replace('/').catch(()=>{});
+     }
      },
 
     loginFailed () {
     this.error = 'Login failed!'
-    delete localStorage.token
+   // delete localStorage.token
     }
     
   }

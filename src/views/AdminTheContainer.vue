@@ -11,29 +11,32 @@
         <ul class="list-unstyled components">
             <p>Content</p>
             <li class="active">
-              <router-link to="/" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Home </router-link>
+              <router-link to='/' data-target="#home" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Home </router-link>
                <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>-->
                 
             <li>
-                <router-link to="/editHeader" style="color: #fff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Header </router-link>
+                <router-link to='/editHeader' data-target="#editheader" style="color: #fff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Header </router-link>
             </li>
             <li>
                 <a style="color: #fff" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Footer</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <router-link style="color: #fff" to="/services" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Services </router-link>
+                        <router-link style="color: #fff" to='/services' data-target="#services" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Services </router-link>
                     </li>
                     <li>
-                        <router-link  style="color: #fff" to="/editfooter" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Contact </router-link>
+                        <router-link  style="color: #fff" to='/editfooter' data-target="#editfooter" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Contact </router-link>
                     </li>
                     
                 </ul>
             </li>
             <li >
-                <router-link style="color: #fff" to="/addnews" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Latest News </router-link>
+                <router-link style="color: #fff" to= '/addnews' data-target="#addnews" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Latest News </router-link>
             </li>
             <li>
-                 <router-link  style="color: #fff" to="/editservice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Service </router-link>
+                 <router-link  style="color: #fff" to='/editservice' data-target="#editservice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Service </router-link>
+            </li>
+            <li>
+                 <router-link  style="color: #fff" to='/logout' data-target="#logout" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Log Out </router-link>
             </li>
         </ul>
     </nav>
@@ -123,22 +126,3 @@ ul ul a {
     }
 }
 </style>
-<script>
-import $ from "jquery";
-
-export default {
-    name: 'comp',
-    
-  
- mounted(){
-    $(document).ready(function () {
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-});
-  
-}
-}
-</script>

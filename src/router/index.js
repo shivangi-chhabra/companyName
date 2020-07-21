@@ -14,7 +14,7 @@ import EditService from '../views/EditService.vue'
 import Services from '../views/Services.vue'
 import Addnews from '../views/Addnews.vue'
 import Admin from '../views/Admin.vue'
-
+import Logout from '../views/Logout.vue'
 
 Vue.use(VueRouter)
 
@@ -50,16 +50,23 @@ Vue.use(VueRouter)
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    
-    beforeEnter(to, from, next) {
-      let currentUser = localStorage.getItem('token');
-      if(currentUser) {
-        next();
-      } else {
-        next("/login");
-      }
-    },
-    
+    beforeEnter(to, from, next){      
+        
+        let currentUser = localStorage.getItem('token');
+        let user = localStorage.getItem('username');
+      if(!user || !currentUser) 
+        {
+           next('/login')
+        }  
+        
+       else if(user  === 'Admin')
+       {         
+             next();
+        } 
+        else{
+              next('/')
+          }             
+  },
     children: [
       
       {
@@ -100,7 +107,11 @@ Vue.use(VueRouter)
     name: 'SignUp',
     component: SignUp
   },
-  
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
+  }
 ]
 
 const router = new VueRouter({
@@ -108,6 +119,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
 
 
 export default router

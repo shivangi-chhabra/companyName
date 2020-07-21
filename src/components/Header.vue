@@ -40,12 +40,12 @@
                             </ul>
                         </li>
                         <li v-for="element in practice" :key="element.id">
-                        <router-link :to="element.Link">{{element.Name}}</router-link></li>
+                        <router-link :to='element.Link'>{{element.Name}}</router-link></li>
                         <li v-if="user">
-                   <router-link to="/" @click="logout">Logout</router-link>
+                   <router-link to='/logout' >LOGOUT</router-link>
               </li>
               <li v-else>
-               <router-link to="/login">Login</router-link>
+               <router-link to='/login'>LOGIN</router-link>
               </li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
@@ -78,20 +78,11 @@ import axios from 'axios'
         this.practice = response.data
       })
       },
-      logout() {
-                axios.post('http://localhost/admin/logout.php').then(response => {
-                    if (response.status === 401) {
-                        console.log('logout')
-                    }
-                }),
-                localStorage.removeItem('token')
-
-                this.$router.push('/').catch(()=>{});
-              },  
+      
     },
     beforeMount() {
       this.getPractice()
-      this.logout()
+      
     }
 }
 </script>
