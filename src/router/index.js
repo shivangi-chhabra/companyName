@@ -15,6 +15,7 @@ import Services from '../views/Services.vue'
 import Addnews from '../views/Addnews.vue'
 import Admin from '../views/Admin.vue'
 import Logout from '../views/Logout.vue'
+import Front from '../views/Front.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/front',
+    name: 'front',
+    component: Front
   },
   {
     path: '/page',
@@ -45,30 +51,26 @@ Vue.use(VueRouter)
     name: 'Menu',
     component: Menu
   },
-  
   {
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    beforeEnter(to, from, next){      
-        
+    beforeEnter(to, from, next){          
         let currentUser = localStorage.getItem('token');
-        let user = localStorage.getItem('username');
+        let user        = localStorage.getItem('username');
       if(!user || !currentUser) 
-        {
+      {
            next('/login')
-        }  
-        
-       else if(user  === 'Admin')
-       {         
-             next();
-        } 
-        else{
-              next('/')
-          }             
+      }   
+      else if(user  === 'Admin')
+      {         
+            next();
+       } 
+      else{
+            next('/')
+        }             
   },
     children: [
-      
       {
         path: '/editheader',
         name: 'EditHeader',
@@ -119,8 +121,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-
 
 
 export default router

@@ -13,10 +13,8 @@ export default {
   name: 'App',
   components: {
       
-     
+    
   }
- 
-
 }
 </script>
 <style>
@@ -30,7 +28,5 @@ html,body{
 #app{
   font-family: 'Open Sans', sans-serif;
 }
-
-
 
 </style>

@@ -43,10 +43,12 @@
                         <router-link :to='element.Link'>{{element.Name}}</router-link></li>
                         <li v-if="user">
                    <router-link to='/logout' >LOGOUT</router-link>
+                   Hello {{username}}!
               </li>
               <li v-else>
-               <router-link to='/login'>LOGIN</router-link>
+               <router-link to='/login'>LOGIN </router-link>
               </li>
+              <li></li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->
@@ -68,7 +70,8 @@ import axios from 'axios'
     }
     },
     created () { 
-       this.user= localStorage.getItem('token') || false;
+       this.user     = localStorage.getItem('token') || false;
+       this.username = localStorage.getItem('username');
     }, 
      methods: {
         getPractice: function () {

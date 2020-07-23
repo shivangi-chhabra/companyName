@@ -24,7 +24,6 @@
   </div>
 </form>
 </div>
-
 </template>
 <script>
 export default {
@@ -49,7 +48,8 @@ export default {
       this.$router.replace('/admin')
       }
       else {
-        this.$router.replace('/')
+      this.$router.replace('/')
+        
       }
     }
   },
@@ -82,7 +82,7 @@ export default {
     
     
      if (localStorage.username === 'Admin'){
-        //console.log(localStorage.username)
+      //console.log(localStorage.username)
      this.error = false
     
      //console.log('----');
@@ -93,6 +93,7 @@ export default {
 
      else{
      this.$router.replace('/').catch(()=>{});
+     console.log(localStorage.username)
      }
      },
 
