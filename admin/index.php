@@ -14,7 +14,7 @@ $password = "";
  // Create connection
 
  $servername = "localhost";
- $conn = mysqli_connect($servername, $username, $password, $database);
+ $conn       = mysqli_connect($servername, $username, $password, $database);
 
  
 if ($conn->connect_error) {
@@ -36,21 +36,38 @@ if(isset($postdata) && !empty($postdata))
     $row    = mysqli_fetch_array($result, MYSQLI_ASSOC);  
     $count  = mysqli_num_rows($result);  
           
+    if($count == 1)
+    {  
 
-    if($count == 1){  
-        echo " Login successful"; 
-        $myObj = new stdClass;;  
-        $myObj->message = "Login successful";
-        $myObj->token = md5(date('Y-m-d h:i:s'));
+        if ($row['username'] == 'Admin') {
+
+                
+                $myObj           = new stdClass;;
+                $myObj->message  = "Admin Login successful";
+                $myObj->username = "Admin";
+                $myObj->token    = md5(1234);
         
 
-        $myJSON = json_encode($myObj);
-        setcookie("data", $myJSON, time()+ 60*60*60,'/');
-        echo $myJSON;   
-         
-         
+                $myJSON          = json_encode($myObj);
+                setcookie("data", $myJSON, time()+ 60*60*60,'/');
+                echo $myJSON;        
+            }else{
+                
+                $myObj           = new stdClass;;
+                $myObj->message  = "Login successful";
+                $myObj->username = "{$username}";
+                $myObj->token    = md5(123456);
+        
+
+                $myJSON          = json_encode($myObj);
+                setcookie("data", $myJSON, time()+ 60*60*60,'/');
+                echo $myJSON;  
+
+            }
+                  
     }  
-    else{  
+    else
+    { 
         header('HTTP/1.0 401 Unauthorized');
         die ("Not authorized");
     }             
@@ -58,6 +75,4 @@ if(isset($postdata) && !empty($postdata))
 }
 
 $conn->close();
-
-
 ?>

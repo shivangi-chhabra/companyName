@@ -235,7 +235,7 @@ export default{
         },
 
         clearMessage: function(){
-            this.errorMessage = '';
+            this.errorMessage   = '';
             this.successMessage = '';
         }
 

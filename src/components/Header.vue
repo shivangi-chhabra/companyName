@@ -42,13 +42,13 @@
                         <li v-for="element in practice" :key="element.id">
                         <router-link :to='element.Link'>{{element.Name}}</router-link></li>
                         <li v-if="user">
-                   <router-link to='/logout' >LOGOUT</router-link>
-                   Hello {{username}}!
-              </li>
-              <li v-else>
-               <router-link to='/login'>LOGIN </router-link>
-              </li>
-              <li></li>
+                        <router-link to='/logout' >LOGOUT</router-link>
+                        Hello {{username}}!
+                        </li>
+                        <li v-else>
+                        <router-link to='/login'>LOGIN </router-link>
+                        </li>
+                        <li></li>
                     </ul>                           
                 </div><!-- /.navbar-collapse -->                
 				<!-- END MAIN NAVIGATION -->

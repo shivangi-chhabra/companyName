@@ -52,7 +52,7 @@
         <div class="modalBody">
              <div class="form-group">
                 <label>Upload Image :</label>
-                <input type="file" class="form-control" @change = "onFileSelected" accept="image/*">
+                <input type="file" class="form-control" @change = "onFileSelected" accept="image/*" name="userImage">
             </div>
             <div class="form-group">
                 <label>Heading :</label>
@@ -66,7 +66,10 @@
         <hr>
         <div class="modalFooter">
             <div class="footerBtn pull-right">
-                <button class="btn btn-default" @click="showAddModal = false"><span class="glyphicon glyphicon-remove"></span> Cancel</button> <button class="btn btn-primary" @click="showAddModal = false; saveMember();"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                <button class="btn btn-default" @click="showAddModal = false">
+                <span class="glyphicon glyphicon-remove"></span> Cancel</button> 
+                <button class="btn btn-primary" @click="showAddModal = false; saveMember();">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
             </div>
         </div>
     </div>
@@ -82,7 +85,7 @@
         <div class="modalBody">
             <div class="form-group">
                 <label>Upload Image :</label>
-                <input type="file" class="form-control" >
+                <input type="file" class="form-control"  @change="previewImage" accept="image/*" >
             </div>
             <div class="form-group">
                 <label>Heading :</label>
@@ -142,7 +145,7 @@ export default{
         images: [],
         newMember: {image: '', Heading: '', Text: ''},
         clickMember: {},
-        
+        imageData: ""
     }
 },
 
@@ -223,7 +226,30 @@ export default{
             var self = this;
             self.clickMember = image;
         },
-        
+        previewImage: function(event) {
+            // Reference to the DOM input element
+            var input = event.target;
+            // Ensure that you have a file before attempting to read it
+            if (input.files && input.files[0]) {
+                // create a new FileReader to read this image and convert to base64 format
+                var reader = new FileReader();
+                // Define a callback function to run, when FileReader finishes its job
+                reader.onload = (e) => {
+                    // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+                    // Read image as base64 and set to imageData
+                    this.imageData = e.target.result;
+                }
+                // Start the reader job - read file as a data url (base64 format)
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        input: (event) => {
+    var reader = new FileReader()
+    reader.readAsDataURL(event.target.files[0])
+    reader.onload = ()=> {
+       console.log(reader.result);
+                     };
+    this.$emit('input', event.target.files[0])},
 
         toFormData: function(obj){
             var form_data = new FormData();

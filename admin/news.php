@@ -74,17 +74,14 @@ if(isset($postdata) && !empty($postdata))
 
 $request = json_decode($postdata);
 
-$image = mysqli_real_escape_string($conn, trim($request->image));
+$image   = mysqli_real_escape_string($conn, trim($request->image));
 $Heading = mysqli_real_escape_string($conn, trim($request->Heading));
-$Text = mysqli_real_escape_string($conn, trim($request->Text));
-
-
-
-
+$Text    = mysqli_real_escape_string($conn, trim($request->Text));
 
 $query = "
             INSERT INTO `news` (`image`,`Heading`, `Text`) 
             VALUES('{$image}','{$Heading}','{$Text}')";
+
 
 
   if(mysqli_query($conn , $query)){
@@ -101,7 +98,7 @@ $image   = mysqli_real_escape_string($conn, $_POST['image']);
 $Heading = mysqli_real_escape_string($conn, $_POST['Heading']);
 $Text    = mysqli_real_escape_string($conn, $_POST['Text']);
 
-$query = "UPDATE `news` SET `image`= $image, `Heading`='$Heading',`Text`='$Text' WHERE `id` = '$id' ";
+$query = "UPDATE `news` SET `image`= '$image', `Heading`='$Heading',`Text`='$Text' WHERE `id` = '$id' ";
 
 if(mysqli_query($conn , $query)){
     echo "Records edited successfully.";
