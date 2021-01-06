@@ -13,7 +13,7 @@
     "app": "^0.1.0",
     "appjs": "0.0.20",
     "appjs-win32": "0.0.19",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.4",
     "font-awesome": "^4.7.0",
