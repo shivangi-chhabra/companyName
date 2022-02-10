@@ -21,7 +21,7 @@
     "mdbreact": "^4.27.0",
     "mdbvue": "^6.7.1",
     "mdvue": "0.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.1",
     "sass-loader": "^7.0.2",
     "solid-js": "^0.7.6",
